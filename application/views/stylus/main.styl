@@ -1,0 +1,185 @@
+// Bugless
+// An Open Source Bug Tracker.
+// ---
+// Theme: Brown
+// ---
+// License: GNU General Public License
+
+
+// Mixins ================================================
+border-radius()
+	border-radius: arguments
+	-moz-border-radius: arguments
+	-o-border-radious: arguments
+	-webkit-border-radius: arguments
+	-ms-border-radius: arguments
+
+box-sizing()
+	box-sizing: border-box
+	-moz-box-sizing: border-box
+	-o-box-sizing: border-box
+	-webkit-box-sizing: border-box
+	-ms-box-sizing: border-box
+
+box-shadow()
+	box-shadow: arguments
+	-moz-box-shadow: arguments
+	-o-box-shadow: arguments
+	-webkit-box-shadow: arguments
+	-ms-box-shadow: arguments
+
+text-shadow()
+	text-shadow: arguments
+	-moz-text-shadow: arguments
+	-o-text-shadow: arguments
+	-webkit-text-shadow: arguments
+	-ms-text-shadow: arguments
+
+
+// Variables  ============================================
+main_padding = 20px
+font_family  = arial, helvetica, sans-serif
+full_width   = 960px
+
+c_top_green  = #70c3a8
+c_link       = #006699
+
+
+// Global Elements =======================================
+*
+	padding: 0
+	margin: 0
+
+body
+	background: url(body_bg.png) repeat left top #271d18
+	font-size: 14px
+	font-family: font_family
+	line-height: 1.2em
+	color: #000
+
+a
+	color: c_link
+	&:hover
+		background-color: c_link
+		color: #fff
+		text-decoration: none
+
+.left
+	float: left
+.right
+	float: right
+.center
+	margin: 0 auto
+.faded
+	color: #8c8c8c
+.m_top
+	margin-top: main_padding
+.p_top
+	padding-top: main_padding
+.m_bottom
+	margin-bottom: main_padding
+.p_bottom
+	padding-bottom: main_padding
+
+small
+	font-size: 12px
+	small
+		font-size: 10px
+button
+	cursor: pointer
+h2
+	font-size: 24px
+
+#master
+	width: 100%
+	float: left
+	clear: both
+	background: url(header_bg.png) repeat-x left top
+.box
+	padding: main_padding
+	border-radius(4px)
+	box-shadow(0 0 4px #000)
+	background-color: #fff
+	overflow: hidden
+	&.half
+		width: 310px
+	&.wide
+		width: 680px
+	&.full
+		width: full_width - 40
+
+
+// Form Styled ===========================================
+form.styled
+	float: left
+	width: 100%
+	.field
+		float: left
+		width: 100%
+		margin-bottom: main_padding
+		&:last-child
+			margin-bottom: 0
+	label
+		width: 100%
+		padding-bottom: 4px
+		display: block
+	input[type="text"], input[type="password"], textarea
+		width: 100%
+		padding: 4px
+		border: 1px solid #8b8b8b
+		border-radius(4px)
+		box-sizing()
+		box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px rgba(0, 0, 0, 0.3))
+		background: url(input_bg.png) repeat-x left top #f5f5f5
+		font-family: font_family
+		&:focus
+			border-color: c_link
+			box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px c_link)
+	button
+	a.button
+		font-size: 14px
+		font-weight: bold
+		background: url(button_bg.png) repeat-x left bottom #e7e7e7
+		border: none
+		padding: 6px 16px
+		text-shadow(0 0 1px #fff)
+		border-radius(4px)
+		box-shadow(0 0 1px 1px #fff inset)
+		border-bottom: 1px solid #898989
+		border-right: 1px solid #898989
+		display: inline-block
+		color: #000
+		text-decoration: none
+		&.plain
+			background: #e7e7e7
+			border: none
+			font-weight: normal
+			box-shadow(none)
+			border-bottom: 1px solid #e7e7e7
+			border-right: 1px solid #e7e7e7
+		&:active
+			color: #000
+			border: none
+			border-top: 1px solid #898989
+			border-left: 1px solid #898989
+			background: url(input_bg.png) repeat-x left top #f5f5f5
+	a.button
+		padding: 7px 16px;
+
+
+// Specific ==============================================
+#login
+#forgot_password
+#register
+	margin-top: 40px
+	.field
+		&.cancel
+		&.forgot_password
+			margin-bottom: 0
+			float: left
+			width: 58%
+		&.button
+			float: right
+			width: 40%
+			button
+				float: right

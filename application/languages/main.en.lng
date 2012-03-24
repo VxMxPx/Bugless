@@ -1,0 +1,21 @@
+# Global
+!EMAIL_ADDRESS: E-mail address
+!PASSWORD: Password
+!CANCEL: Cancel
+!SUBMIT: Submit
+
+# Login
+!LOGIN: Login
+!LOGIN_TAGLINE: Please enter your username (e-mail) and password.
+!FORGOT_MY_PASSWORD: I've forgot my password
+!REGISTER_NEW_ACCOUNT: Register new account
+
+# Forgot password
+!FORGOT_PASSWORD: Forgot password
+!FORGOT_PASSWORD_TAGLINE: Please enter your e-mail address, to start recovery.
+
+# Register new user
+!REGISTER: Register
+!REGISTER_ACCOUNT: Register account
+!REGISTER_ACCOUNT_TAGLINE: Enter your e-mail and password and hit 'Register'
+!PASSWORD_AGAIN: Password again
