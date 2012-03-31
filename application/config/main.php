@@ -13,7 +13,7 @@ $AvreliaConfig = array
 			 *  **************************************  */
 
 			# If there's no parameteres set in our URL, this will be called.
-			0   => 'projects->list()',
+			0   => 'projects->dashboard()',
 
 			# The 404 route.
 			# If not provided / not found, the system will look for 404.php view;
@@ -88,7 +88,7 @@ $AvreliaConfig = array
 	'plug' => array
 	(
 		# Which plugs do we want to use in our application.
-		'enabled'    => array('html', 'jquery', 'form'),
+		'enabled'    => array('html', 'jquery', 'form', 'database', 'session'),
 
 		# Which plugs do we want to autoload at the begining.
 		# Plug must be on enabled list, in order to be auto loaded.

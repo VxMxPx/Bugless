@@ -37,12 +37,17 @@ text-shadow()
 
 
 // Variables  ============================================
-main_padding = 20px
+padding_main = 20px
 font_family  = arial, helvetica, sans-serif
-full_width   = 960px
 
-c_top_green  = #70c3a8
-c_link       = #006699
+width_full        = 960px
+width_sidebar     = 220px
+width_has_sidebar = 720px
+
+c_top_line          = #70c3a8
+c_link              = #006699
+c_link_outside      = #8e7d74
+c_selection_outside = #28201c
 
 
 // Global Elements =======================================
@@ -57,12 +62,35 @@ body
 	line-height: 1.2em
 	color: #000
 
+body > .about
+	position: absolute
+	left: 0px
+	width: 100%
+	text-align: center
+	font-size: 12px
+	z-index: -1
+	color: rgba(255, 230, 200, 0.3)
+	text-shadow(0pt 1px 0pt rgba(0, 0, 0, 0.5))
+	bottom: 0px
+	padding-bottom: 10px
+	padding-top: 10px
+	background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.1)
+	//box-shadow(0pt 2px 2px rgba(0, 0, 0, 0.3) inset\, 0pt -1px 0pt rgba(255, 255, 255, 0.1))
+
 a
 	color: c_link
 	&:hover
 		background-color: c_link
 		color: #fff
 		text-decoration: none
+		border-radius(2px)
+
+.sidebar a
+a.link_outside
+	color: c_link_outside
+	text-decoration: none
+	&:hover
+		background: transparent
 
 .left
 	float: left
@@ -72,14 +100,22 @@ a
 	margin: 0 auto
 .faded
 	color: #8c8c8c
+.dark
+	color: #000
 .m_top
-	margin-top: main_padding
+	margin-top: padding_main
 .p_top
-	padding-top: main_padding
+	padding-top: padding_main
 .m_bottom
-	margin-bottom: main_padding
+	margin-bottom: padding_main
 .p_bottom
-	padding-bottom: main_padding
+	padding-bottom: padding_main
+
+.construction
+	padding-bottom: 3px
+	background-image: url(line_construction.png)
+	background-position: left bottom
+	background-repeat: repeat-x
 
 small
 	font-size: 12px
@@ -95,19 +131,108 @@ h2
 	float: left
 	clear: both
 	background: url(header_bg.png) repeat-x left top
+
+#bucket
+	width: width_full
+	margin: 10px auto 0
+
+.sidebar
+	width: width_sidebar
+	float: right
+	color: white
+	h3
+		font-size: 14px
+		font-weight: bold
+		margin-bottom: 10px
+	.open_select
+		list-style: none
+		float: left
+		clear: both
+		width: 100%
+		li
+			float: left
+			width: 100%
+			margin-bottom: 2px
+			&:last-child
+				margin-bottom: 0px
+		a
+			width: width_sidebar - 40
+			float: left
+			display: block
+			clear: both;
+			padding: 5px 10px
+			margin-left: -10px
+			.color_bullet
+				font-size: 28px
+				margin-left: -12px
+				float: left
+			small
+				float: right
+				font-size: 10px
+		.selected a
+			background-color: c_top_line
+			border-radius(4px)
+			color: c_selection_outside
+	.button
+		&.huge
+			text-transform: uppercase
+			width: 100%
+			padding: 10px 0
+			text-align: center
+			font-size: 20px
+			font-weight: bold
+			line-height: 1em
+			font-family: 'arial black'
+			text-shadow(0 0 4px rgba(255,255,255,0.3)\, inset 1px 1px 1px 1px black)
+		&.color
+			color: #18382d
+			background: url(button_color_bg.png) repeat-x left bottom #70c3a8
+			box-shadow(0 0 2px rgba(0,0,0,0.75)\, inset 1px 1px 1px white\, inset 0 0 4px rgba(0,0,0,0.2))
+	.box
+		background-color: rgba(0,0,0,0.2)
+		box-shadow(0 0 1px rgba(255,255,255,0.25)\, inset 1px 1px 2px rgba(0,0,0,0.2))
+		margin-bottom: padding_main
+		&:last-child
+			margin-bottom: 0
+
+.page
+	float: left
+	width: width_full
+	&.has_sidebar
+		width: width_has_sidebar
+
+.group
+	margin-bottom: padding_main
+	width: 100%
+	&:last-child
+		margin-bottom: 0
+
 .box
-	padding: main_padding
+	position: relative
+	padding: padding_main
 	border-radius(4px)
 	box-shadow(0 0 4px #000)
 	background-color: #fff
 	overflow: hidden
+	.c_ico
+		position: absolute
+		right: 10px
+		top: 10px
+		display: block
+		width: 16px
+		height: 16px
+		background-position: center
+		background-repeat: no-repeat
+		&.pointer_r
+			background-image: url(box_ico_pointer_r.png)
+	&.construction
+		padding-bottom: padding_main + 3
 	&.half
 		width: 310px
 	&.wide
 		width: 680px
 	&.full
-		width: full_width - 40
-
+		width: width_full - 40
 
 // Form Styled ===========================================
 form.styled
@@ -116,7 +241,7 @@ form.styled
 	.field
 		float: left
 		width: 100%
-		margin-bottom: main_padding
+		margin-bottom: padding_main
 		&:last-child
 			margin-bottom: 0
 	label
@@ -136,44 +261,59 @@ form.styled
 			border-color: c_link
 			box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px c_link)
 			outline: none
-	button
-	a.button
-		font-size: 14px
-		font-weight: bold
-		background: url(button_bg.png) repeat-x left bottom #e7e7e7
+
+button
+a.button
+	font-size: 14px
+	font-weight: bold
+	background: url(button_bg.png) repeat-x left bottom #e7e7e7
+	border: none
+	padding: 6px 16px
+	text-shadow(0 0 1px #fff)
+	border-radius(4px)
+	box-shadow(0 0 1px 1px #fff inset)
+	border-bottom: 1px solid #898989
+	border-right: 1px solid #898989
+	display: inline-block
+	color: #000
+	text-decoration: none
+	&.plain
+		background: #e7e7e7
 		border: none
-		padding: 6px 16px
-		text-shadow(0 0 1px #fff)
-		border-radius(4px)
-		box-shadow(0 0 1px 1px #fff inset)
-		border-bottom: 1px solid #898989
-		border-right: 1px solid #898989
-		display: inline-block
+		font-weight: normal
+		box-shadow(none)
+		border-bottom: 1px solid #e7e7e7
+		border-right: 1px solid #e7e7e7
+	&:active
 		color: #000
-		text-decoration: none
-		&.plain
-			background: #e7e7e7
-			border: none
-			font-weight: normal
-			box-shadow(none)
-			border-bottom: 1px solid #e7e7e7
-			border-right: 1px solid #e7e7e7
-		&:active
-			color: #000
-			border: none
-			border-top: 1px solid #898989
-			border-left: 1px solid #898989
-			background: url(input_bg.png) repeat-x left top #f5f5f5
-			outline: none
-	a.button
-		padding: 7px 16px;
+		border: none
+		border-top: 1px solid #898989
+		border-left: 1px solid #898989
+		background: url(input_bg.png) repeat-x left top #f5f5f5
+		outline: none
+a.button
+	padding: 7px 16px;
 
 
 // Specific ==============================================
+#navigation_main
+	width: 100%
+	clear: both
+	float: left
+	margin-bottom: 30px
+	color: c_link_outside
+	.left a
+		margin-left: 10px
+		&:last-child
+			margin-left: 0
+	.right a
+		margin-right: 10px
+		&:last-child
+			margin-right: 0
+
 #login
 #forgot_password
 #register
-	margin-top: 40px
 	.field
 		&.cancel
 		&.forgot_password
