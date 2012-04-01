@@ -29,9 +29,6 @@ class Avrelia
 		'cache', 'log', 'util', 'v_string',
 	);
 
-	# If we have 404 in progress, don't call it again.
-	private $is404Progress = false;
-
 	/**
 	 * Will init the framework
 	 * --
@@ -72,6 +69,7 @@ class Avrelia
 		}
 
 		# Init Config
+		Cfg::Load(ds(SYSPATH . '/config/main.php'));
 		Cfg::Load(ds(APPPATH . '/config/main.php'));
 
 		# Reset Error Reporting...
@@ -134,74 +132,65 @@ class Avrelia
 
 		$requestUri = trim(Input::GetRequestUri(false), '/');
 		$routeCall  = '';
+		$found      = false;
+
+		# Do we have before?
+		if (Cfg::Get('system/routes/before', false)) {
+			if (!$this->routeCall(Cfg::Get('system/routes/before'))) {
+				Log::Add('WAR', "Before is set in config, but can't find method: `".Cfg::Get('system/routes/before', false)."`.", __LINE__, __FILE__);
+			}
+		}
 
 		# In case we have no uri
 		if (empty($requestUri)) {
 			if (Cfg::Get('system/routes/0')) {
-				$routeCall = str_replace(
-								array('/', '->', '(', ',', ')'),
-								array(' {#!<<PATH!#} ', ' {#!<<CONTROLLER!#} ', ' {#!<<METHOD!#} ', ' {#!<<PARAM!#} ', ''),
-								Cfg::Get('system/routes/0'));
-				$this->routeCall($routeCall);
-				return true;
+				$this->routeCall(Cfg::Get('system/routes/0'));
+				$found = true;;
 			}
 		}
 		else
 		{
 			# Loop to check for uri
 			$Routes = Cfg::Get('system/routes');
-			unset($Routes[0], $Routes[404]);
+			unset($Routes[0], $Routes[404], $Routes['before'], $Routes['after']);
 
 			foreach($Routes as $routeRegEx => $routeCall) {
 				$patterns = '';
 				if (preg_match_all($routeRegEx, $requestUri, $patterns, PREG_SET_ORDER)) {
 					$Patterns = $patterns[0];
-					# Safely Escape Route
-					$routeCall = str_replace(
-									array('/', '->', '(', ',', ')'),
-									array(' {#!<<PATH!#} ', ' {#!<<CONTROLLER!#} ', ' {#!<<METHOD!#} ', ' {#!<<PARAM!#} ', ''),
-									$routeCall);
 					unset($Patterns[0]);
-					foreach($Patterns as $key => $pat) {
-						$routeCall = str_replace('%'.$key, $pat, $routeCall);
-					}
 
 					# Call route...
-					$this->routeCall($routeCall);
-					return true;
+					$found = $this->routeCall($routeCall, $Patterns);
+					break;
 				}
 			}
 
 		}
 
-		$this->call404($routeCall);
-		return false;
-	}
-	//-
+		# Call 404 if we have false
+		if (!$found) {
+			HTTP::Status404_NotFound();
+			Log::Add('INF', "We have 404 on `{$requestUri}`.", __LINE__, __FILE__);
 
-	/**
-	 * Call 404 if route not found
-	 * --
-	 * @param	string	$route
-	 * --
-	 * @return	void
-	 */
-	private function call404($route=null)
-	{
-		if (Cfg::Get('system/routes/404') && !$this->is404Progress) {
-			$this->is404Progress = true;
-			$this->routeCall(str_replace(
-								array('/', '->', '(', ',', ')'),
-								array(' {#!<<PATH!#} ', ' {#!<<CONTROLLER!#} ', ' {#!<<METHOD!#} ', ' {#!<<PARAM!#} ', ''),
-								Cfg::Get('system/routes/404')));
-			Event::Trigger('Avrelia.After.BootAPP');
+			if (Cfg::Get('system/routes/404')) {
+				$found = $this->routeCall(Cfg::Get('system/routes/404'));
+			}
+
+			# Still not found?
+			if (!$found) {
+				echo '404: ' . $requestUri;
+			}
 		}
-		else {
-			# Do 404, sorry!
-			Event::Trigger('Avrelia.After.BootAPP');
-			Log::Add('WAR', "Routes: 404 or default isn't set! It will stop with plain 404.", __LINE__, __FILE__);
-			HTTP::Status404_NotFound('404: ' . $route);
+
+		# Do we have after?
+		if (Cfg::Get('system/routes/after', false)) {
+			if (!$this->routeCall(Cfg::Get('system/routes/after'))) {
+				Log::Add('WAR', "After is set in config, but can't find method: `".Cfg::Get('system/routes/after', false)."`.", __LINE__, __FILE__);
+			}
 		}
+
+		Event::Trigger('Avrelia.After.BootAPP');
 	}
 	//-
 
@@ -209,11 +198,26 @@ class Avrelia
 	 * This will resolve route call (example: /controller->method(params))
 	 * --
 	 * @param	string	$callName
+	 * @param	array	$Patterns
 	 * --
 	 * @return	void
 	 */
-	private function routeCall($callName)
+	private function routeCall($callName, $Patterns=false)
 	{
+		# Safely Escape Route
+		$callName = str_replace(
+						array('/', '->', '(', ',', ')'),
+						array(' {#!<<PATH!#} ', ' {#!<<CONTROLLER!#} ', ' {#!<<METHOD!#} ', ' {#!<<PARAM!#} ', ''),
+						$callName
+					);
+
+		# Set patterns
+		if ($Patterns && is_array($Patterns)) {
+			foreach($Patterns as $key => $pat) {
+				$callName = str_replace('%'.$key, $pat, $callName);
+			}
+		}
+
 		# Get Path
 		$Params   = array_reverse(explode(' {#!<<PATH!#} ', $callName, 2), false);
 		$path     = isset($Params[1]) ? vString::Clean(strtolower($Params[1]), 100, 'a 1 c', '_') : '';
@@ -244,7 +248,6 @@ class Avrelia
 		}
 
 		if (!class_exists($controller.'Controller', false)) {
-			$this->call404("{$path}/{$controller}->{$method}(".implode(', ', $Params).')');
 			return false;
 		}
 
@@ -255,14 +258,29 @@ class Avrelia
 		# Call the function if exists
 		if (method_exists($Controller, $method)) {
 			call_user_func_array(array($Controller, $method), $Params);
+			return true;
 		}
 		else {
-			$this->call404("{$path}/{$controller}->{$method}(".implode(', ', $Params).')');
 			return false;
 		}
+	}
+	//-
 
-		# After app boot
-		Event::Trigger('Avrelia.After.BootAPP');
+	/**
+	 * Say your prayers, you're going down after this.
+	 * This is the last method after execution. It's even after boot, routing, etc...
+	 * --
+	 * @return	void
+	 */
+	public function __destruct()
+	{
+		# Final event
+		Event::Trigger('Avrelia.Before.Destruct');
+
+		# Write log (fatal)
+		if (Cfg::Get('log/enabled') && Cfg::Get('log/write_individual') === false) {
+			Log::WriteAll(false);
+		}
 	}
 	//-
 }

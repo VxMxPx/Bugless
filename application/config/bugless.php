@@ -1,6 +1,6 @@
 <?php if (!defined('AVRELIA')) { die('Access is denied!'); }
 
-$Config['bugless'] = array
+$AvreliaConfig['bugless'] = array
 (
 	# When bugless is installed, a value "installed" is created in database's settings,
 	# containig version of system and date of installation.

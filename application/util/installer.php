@@ -62,11 +62,18 @@ class uInstaller
 			return false;
 		}
 
-		# Execute it!
-		$Result = cDatabase::Query($sql);
+		# Replace some values
+		$sql = str_replace(array('%BUGLESS_VERSION', '%DATETIME'), array(BUGLESS_VERSION, gmdate('YmdHis')), $sql);
+		$SQL = vString::ExplodeTrim('-- STATEMENT:', $sql);
+
+		$r = true;
+		foreach ($SQL as $sqlStatement) {
+			# Execute it!
+			$r = cDatabase::Query('--' . $sqlStatement)->succeed() ? $r : false;
+		}
 
 		# Finished
-		return $Result->succeed();
+		return $r;
 	}
 	//-
 }
