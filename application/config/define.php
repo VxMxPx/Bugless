@@ -24,3 +24,9 @@ if (file_exists($localDefine)) {
 if (!defined('APPPATH')) { define('APPPATH', realpath(dirname(__FILE__).'/../')); }
 if (!defined('PUBPATH')) { define('PUBPATH', realpath(APPPATH.'/public'));    }
 if (!defined('SYSPATH')) { define('SYSPATH', realpath(APPPATH.'/../system'));   }
+
+# Bugless things
+# Please note, version numbers are real, regular decimals, meaning:
+# 	0.90 === 0.9 && 0.9 > 0.85
+define('BUGLESS',			true);
+define('BUGLESS_VERSION',	0.90);

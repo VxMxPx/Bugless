@@ -9,7 +9,7 @@ $AvreliaConfig = array
 		'routes'           => array
 		(
 			/*  ****************************************************** *
-			 *          Projects
+			 *          Default actions
 			 *  **************************************  */
 
 			# If there's no parameteres set in our URL, this will be called.
@@ -19,6 +19,9 @@ $AvreliaConfig = array
 			# If not provided / not found, the system will look for 404.php view;
 			# if that won't be found either, only 404 plain message will be shown.
 			404 => 'application->not_found_404()',
+
+			# Trigger installation process
+			'/install/' => 'application->install()',
 
 			/*  ****************************************************** *
 			 *          Users
