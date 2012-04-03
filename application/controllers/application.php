@@ -8,6 +8,12 @@ class applicationController
 		# Load bugless config
 		Cfg::Load('bugless');
 
+		# General common functions
+		Util::Get('functions');
+
+		# Get general settings from database
+		getDatabaseSettings();
+
 		# Load english language
 		Language::Load('main.en');
 
@@ -15,6 +21,12 @@ class applicationController
 		$Form = new cForm();
 		$Form->wrapFields('<div class="field {name} {type}">{field}</div>');
 		View::AddVar('Form', $Form);
+
+		# Add jQuery everywhere
+		cJquery::Add();
+
+		# Bugless javaScript
+		cHTML::AddFooter('<script src="'.url('/js/bugless.js').'"></script>', 'bugless.js');
 	}
 	//-
 
@@ -27,7 +39,7 @@ class applicationController
 		if ($result === -1) {
 			HTTP::Redirect(url());
 		}
-		
+
 		Output::Set('Installer', Log::Get(2));
 	}
 	//-
@@ -35,7 +47,7 @@ class applicationController
 	# default 404
 	public function not_found_404()
 	{
-
+		HTTP::Status404_NotFound('<h1>404: Not found</h1>');
 	}
 	//-
 }

@@ -1,4 +1,5 @@
 # Global
+!EMAIL: Email
 !EMAIL_ADDRESS: E-mail address
 !PASSWORD: Password
 !CANCEL: Cancel
@@ -9,6 +10,11 @@
 !FINISHED: Finished
 !TAGS: Tags
 !STARRED: Starred
+!DONT_WANNA: Don't want to
+!OK: Ok
+
+# Languages
+!ENGLISH: English
 
 # Projects
 !NEW_PROJECT: New Project
@@ -18,6 +24,7 @@
 !LOGIN_TAGLINE: Please enter your username (e-mail) and password.
 !FORGOT_MY_PASSWORD: I've forgot my password
 !REGISTER_NEW_ACCOUNT: Register new account
+!INVALID_USERNAME_OR_PASSWORD: Invalid username and/or password.
 
 # Forgot password
 !FORGOT_PASSWORD: Forgot password
@@ -28,3 +35,13 @@
 !REGISTER_ACCOUNT: Register an Account
 !REGISTER_ACCOUNT_TAGLINE: Enter your e-mail and password and hit 'Register'
 !PASSWORD_AGAIN: Password again
+!PASSWORD_DOESNT_MATCH: Password doesn't match.
+!EMAIL_CONFORMATION_SUBJECT: Welcome to %s
+!USER_ACCOUNT_SUCCESSFULLY_CREATED: Your account was created.
+!FAILED_TO_CREATE_ACCOUNT: Unknown error while creating your account.
+!REGISTER_ACCOUNT_AFTER: Thank you!
+!REGISTER_ACCOUNT_AFTER_TAGLINE: While you're waiting for conformation e-mail to arrive,
+we'd be very glad if you'd tell us a bit more about you. None of the fields are required.
+!FULL_NAME: Your full name
+!TIMEZONE: Timezone
+!LANGUAGE: Language

@@ -10,5 +10,9 @@
 	<?php cHTML::GetHeaders(); ?>
 </head>
 <body>
+	<script>
+		document.getElementsByTagName('body')[0].className = 'js';
+	</script>
+	<?php if (uMessage::Exists()) { echo '<div id="messages">', uMessage::Get(false), '</div>'; } ?>
 	<div id="master">
 		<div id="bucket">

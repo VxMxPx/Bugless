@@ -59,7 +59,7 @@ body
 	background: url(body_bg.png) repeat left top #271d18
 	font-size: 14px
 	font-family: font_family
-	line-height: 1.2em
+	line-height: 1em
 	color: #000
 
 body > .about
@@ -125,6 +125,39 @@ button
 	cursor: pointer
 h2
 	font-size: 24px
+	margin-bottom: 4px
+
+body.js #messages .mItem
+	display: none
+	cursor: pointer
+
+#messages
+	position: absolute
+	z-index: 10
+	top: padding_main
+	right: padding_main
+	color: white
+	.mItem
+		padding: 10px
+		border-radius(4px)
+		margin-bottom: 4px
+		text-shadow(0 1px 0px rgba(0, 0, 0, 0.2))
+		&#tERR
+			background-color: #C6004A
+		&#tWAR
+			background-color: #DE6342
+		&#tINF
+			background-color: #0063A5
+		&#tOK
+			background-color: #008442
+		&:hover
+			opacity: 0.8
+	.mIco
+		display: none
+	.mMsg > div
+		padding-bottom: 4px
+		&:last-child
+			padding-bottom: 0
 
 #master
 	width: 100%
@@ -159,7 +192,7 @@ h2
 			width: width_sidebar - 40
 			float: left
 			display: block
-			clear: both;
+			clear: both
 			padding: 5px 10px
 			margin-left: -10px
 			.color_bullet
@@ -248,7 +281,10 @@ form.styled
 		width: 100%
 		padding-bottom: 4px
 		display: block
-	input[type="text"], input[type="password"], textarea
+	select,
+	input[type="text"],
+	input[type="password"],
+	textarea
 		width: 100%
 		padding: 4px
 		border: 1px solid #8b8b8b
@@ -257,6 +293,8 @@ form.styled
 		box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px rgba(0, 0, 0, 0.3))
 		background: url(input_bg.png) repeat-x left top #f5f5f5
 		font-family: font_family
+		&.half
+			width: 48%
 		&:focus
 			border-color: c_link
 			box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px c_link)
@@ -265,7 +303,7 @@ form.styled
 button
 a.button
 	font-size: 14px
-	font-weight: bold
+	//font-weight: bold
 	background: url(button_bg.png) repeat-x left bottom #e7e7e7
 	border: none
 	padding: 6px 16px
@@ -292,7 +330,7 @@ a.button
 		background: url(input_bg.png) repeat-x left top #f5f5f5
 		outline: none
 a.button
-	padding: 7px 16px;
+	padding: 7px 16px
 
 
 // Specific ==============================================
@@ -314,6 +352,7 @@ a.button
 #login
 #forgot_password
 #register
+#register_after
 	.field
 		&.cancel
 		&.forgot_password

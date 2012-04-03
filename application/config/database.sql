@@ -163,4 +163,10 @@ CREATE TABLE IF NOT EXISTS 'pages_revisions' (
 );
 
 -- STATEMENT: Insert defaults into settings
-INSERT INTO settings ('project_id','key','value')  VALUES (0, 'installed', '%BUGLESS_VERSION||%DATETIME');
+INSERT INTO settings ('project_id','key','value') VALUES (0, 'installed', '%BUGLESS_VERSION||%DATETIME');
+-- STATEMENT: /
+INSERT INTO settings ('project_id','key','value') VALUES (0, 'mail_from', 'no-reply@localhost');
+-- STATEMENT: /
+INSERT INTO settings ('project_id','key','value') VALUES (0, 'site_title', 'Bugless');
+-- STATEMENT: /
+INSERT INTO settings ('project_id','key','value') VALUES (0, 'mail_registration', 'Welcome to {{site_title}}!\n\nTo activate your account, please click on the link below or paste into the url field on your browser:\n{{link}}');

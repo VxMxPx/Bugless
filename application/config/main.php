@@ -58,7 +58,7 @@ $AvreliaConfig = array
 	'plug' => array
 	(
 		# Which plugs do we want to use in our application.
-		'enabled'    => array('html', 'jquery', 'form', 'database', 'session'),
+		'enabled'    => array('html', 'jquery', 'form', 'database', 'session', 'validate', 'mail'),
 	),
 
 	# Cookies settings.
@@ -66,5 +66,13 @@ $AvreliaConfig = array
 	(
 		# Cookie prefix (can be empty if you want so).
 		'prefix' => 'bugless_',
+	),
+
+	# Log settings.
+	'log' => array
+	(
+		# Is log enabled (writing to file)?
+		# Please before you enabled log, make sure your log folder is writeable.
+		'enabled' => false,
 	),
 );

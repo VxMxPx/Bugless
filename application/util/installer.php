@@ -4,8 +4,7 @@ class uInstaller
 {
 	/**
 	 * Will setup system, so that it will be fully functional.
-	 * Before proceed, well check if "installed" value exists in database
-	 * and if "installed" in settings is set to "false".
+	 * Before proceed, well check if "installed" value exists in database.
 	 * After that we'll check if all folders (which needs to be),
 	 * ar writeable.
 	 * If all that is true, we'll create all tables which we need,
@@ -33,16 +32,6 @@ class uInstaller
 			return -1;
 		}
 
-		# Try to get installed value from settings table
-		$Setting = cDatabase::Read(
-							'settings',
-							array('project_id' => 0, 'key' => 'installed'));
-
-		if ($Setting->succeed()) {
-			uMessage::Log('INF', "System is already installed. Found the record in database.", __LINE__, __FILE__);
-			return -1;
-		}
-
 		# All folder writable?
 		foreach(array('public', 'database', 'log') as $folder) {
 			if (is_dir(ds(APPPATH.'/'.$folder))) {
@@ -65,6 +54,7 @@ class uInstaller
 		# Replace some values
 		$sql = str_replace(array('%BUGLESS_VERSION', '%DATETIME'), array(BUGLESS_VERSION, gmdate('YmdHis')), $sql);
 		$SQL = vString::ExplodeTrim('-- STATEMENT:', $sql);
+		unset($SQL[0]);
 
 		$r = true;
 		foreach ($SQL as $sqlStatement) {
