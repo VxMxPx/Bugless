@@ -12,6 +12,7 @@
 !STARRED: Starred
 !DONT_WANNA: Don't want to
 !OK: Ok
+!SAVE: Save
 
 # Languages
 !ENGLISH: English
@@ -37,11 +38,22 @@
 !PASSWORD_AGAIN: Password again
 !PASSWORD_DOESNT_MATCH: Password doesn't match.
 !EMAIL_CONFORMATION_SUBJECT: Welcome to %s
-!USER_ACCOUNT_SUCCESSFULLY_CREATED: Your account was created.
-!FAILED_TO_CREATE_ACCOUNT: Unknown error while creating your account.
-!REGISTER_ACCOUNT_AFTER: Thank you!
-!REGISTER_ACCOUNT_AFTER_TAGLINE: While you're waiting for conformation e-mail to arrive,
-we'd be very glad if you'd tell us a bit more about you. None of the fields are required.
+!USER_ACCOUNT_SUCCESSFULLY_CREATED: Your account was created
+!FAILED_TO_CREATE_ACCOUNT: Unknown error while creating your account
+!USER_ACCOUNT_CHECK_EMAIL: The activation key was send to your e-mail address <strong>%s</strong>.
+
+# Activate
+!ACCOUNT_ACTIVATE: Thank you!
+!ACCOUNT_ACTIVATE_MESSAGE: Your account was successfully activated.
+!ACCOUNT_ACTIVATE_TAGLINE: <strong>Your account was activated, and you are logged-in automatically.</strong><br /><br />
+Now, if you don't mind, we'd be very glad if you'd tell us a bit more about yourself.
+None of the fields are required.
 !FULL_NAME: Your full name
 !TIMEZONE: Timezone
 !LANGUAGE: Language
+!USER_ACCOUNT_ACTIVATE_INVALID_KEY: Invalid activation key.
+!USER_ACCOUNT_ACTIVATE_WAIT: Something ain't right...
+!USER_ACCOUNT_ACTIVATE_WAIT_DESCRIPTION: The key isn't correct!
+!USER_ACCOUNT_ACTIVATE_WAIT_MESSAGE: It seems that something's wrong with your key.<br />
+If you want so, we can send you new activation key.
+!OK_SEND_IT: Ok, send it!

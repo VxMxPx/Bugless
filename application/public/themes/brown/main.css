@@ -72,6 +72,8 @@ a.button{padding:7px 16px}
 #navigation_main .left a:last-child{margin-left:0}
 #navigation_main .right a{margin-right:10px;}
 #navigation_main .right a:last-child{margin-right:0}
-#login .field.cancel,#forgot_password .field.cancel,#register .field.cancel,#register_after .field.cancel,#login .field.forgot_password,#forgot_password .field.forgot_password,#register .field.forgot_password,#register_after .field.forgot_password{margin-bottom:0;float:left;width:58%}
-#login .field.button,#forgot_password .field.button,#register .field.button,#register_after .field.button{float:right;width:40%;}
-#login .field.button button,#forgot_password .field.button button,#register .field.button button,#register_after .field.button button{float:right}
+#login .field.cancel,#forgot_password .field.cancel,#register .field.cancel,#activate_account .field.cancel,#login .field.forgot_password,#forgot_password .field.forgot_password,#register .field.forgot_password,#activate_account .field.forgot_password{margin-bottom:0;float:left;width:58%}
+#login .field.button,#forgot_password .field.button,#register .field.button,#activate_account .field.button{float:right;width:40%;}
+#login .field.button button,#forgot_password .field.button button,#register .field.button button,#activate_account .field.button button{float:right}
+#generic_message p.message{margin:20px 0;float:left;width:100%}
+#generic_message p.button{float:left;width:100%}

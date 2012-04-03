@@ -1,9 +1,9 @@
 <?php View::Get('_assets/header'); ?>
 <?php View::Get('_assets/navigation_main'); ?>
 <div class="page">
-	<div class="box half center" id="register_after">
-		<h2><?php le('REGISTER_ACCOUNT_AFTER'); ?></h2>
-		<small class="faded"><?php le('REGISTER_ACCOUNT_AFTER_TAGLINE'); ?></small>
+	<div class="box half center" id="activate_account">
+		<h2><?php le('ACCOUNT_ACTIVATE'); ?></h2>
+		<small class="faded"><?php le('ACCOUNT_ACTIVATE_TAGLINE'); ?></small>
 		<?php
 		echo
 			$Form->att('class="m_top styled"')->start('register'),
@@ -16,7 +16,7 @@
 			'<div class="field cancel">',
 				cHTML::Link(l('DONT_WANNA'), url(), 'class="button plain"'),
 			'</div>',
-			$Form->button(l('OK')),
+			$Form->button(l('SAVE')),
 			$Form->end();
 		?>
 	</div>

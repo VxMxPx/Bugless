@@ -37,10 +37,13 @@ $AvreliaConfig = array
 			'/logout/i'          => 'users->logout()',
 
 			# Register
-			'/register/i'		 => 'users->register()',
+			'/register/i'        => 'users->register()',
+
+			# Activate
+			'/activate\/([a-zA-Z0-9]*)/i' => 'users->activate(%1)',
 
 			# Forgot password
-			'/forgot_password/i' => 'users->forgot_password()',
+			'/forgot_password/i'          => 'users->forgot_password()',
 
 			# Match home/$method/$Parameters
 			# Controller and method can consist only of: a-z 0-9 _
