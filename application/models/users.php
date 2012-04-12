@@ -45,6 +45,12 @@ class usersModel
 			return false;
 		}
 
+		# New check if we have user with such e-mail already in our database
+		if (cDatabase::Find('users', array('uname' => $Data['email']))->count() > 0) {
+			uMessage::Add('WAR', l('EMAIL_ALREADY_IN_USE'), __FILE__);
+			return false;
+		}
+		
 		# Add additional fields
 		$Data['id']     = null;
 		$Data['active'] = false;

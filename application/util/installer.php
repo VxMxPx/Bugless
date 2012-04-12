@@ -59,7 +59,7 @@ class uInstaller
 		$r = true;
 		foreach ($SQL as $sqlStatement) {
 			# Execute it!
-			$r = cDatabase::Query('--' . $sqlStatement)->succeed() ? $r : false;
+			$r = cDatabase::Execute('--' . $sqlStatement)->succeed() ? $r : false;
 		}
 
 		# Finished

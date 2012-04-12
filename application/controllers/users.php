@@ -14,7 +14,7 @@ class usersController
 				uMessage::Add('OK', l('USER_ACCOUNT_SUCCESSFULLY_CREATED'), __FILE__);
 				View::Get('_assets/generic_message', array(
 					'title'         => l('USER_ACCOUNT_SUCCESSFULLY_CREATED'),
-					'message'       => l('USER_ACCOUNT_CHECK_EMAIL', Input::Post('email')),
+					'message'       => l('USER_ACCOUNT_CHECK_EMAIL', '<strong>'.Input::Post('email').'</strong>'),
 					'button_1'      => cHTML::Link(l('OK'), url(), 'class="right button"'),
 				));
 				return;

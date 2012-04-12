@@ -7,7 +7,7 @@
  */
 function getDatabaseSettings()
 {
-	$Settings = cDatabase::Read('settings', array('project_id' => 0));
+	$Settings = cDatabase::Find('settings', array('project_id' => 0));
 
 	if ($Settings->succeed()) {
 		$Settings = $Settings->asArray();

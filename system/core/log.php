@@ -12,37 +12,45 @@
  * @link       http://framework.avrelia.com
  * @since      Version 0.60
  * @since      Date 2009-08-18
- * ---
- * @property	array	$Logs
- * @property	boolean	$enabled
- * @property	string	$filename
- * @property	array	$Types
- * @property	boolean	$writeIndividual
- * @property	string	$filenameOnFatal
  */
 class Log
 {
-	# Array of all log items
+	/**
+	 * @var	array	All log items
+	 */
 	private static $Logs = array();
 
-	# Turn everything off.
-	# This is useful when we're saving log message (individualy),
-	# if In that process error happened, it may cause infinite loop.
+	/**
+	 * @var	array	Turn everything off.
+	 * 				This is useful when we're saving log message (individualy),
+	 * 				if In that process error happened, it may cause infinite loop.
+	 */
 	private static $enabled = false;
 
-	# Full path to log file, if this is set to false, the log won't be saved
+	/**
+	 * @var	string	Full path to log file, if this is set to false,
+	 * 				the log won't be saved.
+	 */
 	private static $filename = null;
 
-	# Log types. Select which type of messages should be saved.
-	# Available options are: INF, ERR, WAR; To log "INF" isn't recommended.
+	/**
+	 * @var	array	Log types. Select which type of messages should be saved.
+	 * 				Available options are: INF, ERR, WAR; To log "INF" isn't recommended.
+	 */
 	private static $Types = array('ERR', 'WAR');
 
-	# If set to true, every log message will be saved individually;
-	# If set to false, all messages will be saved at the end of script execution
+	/**
+	 * @var	boolean	If set to true, every log message will be saved individually;
+	 * 				If set to false, all messages will be saved at the end of script execution
+	 */
 	private static $writeIndividual = true;
 
-	# This won't append, but create always fresh file, so it should be unique filename
+	/**
+	 * @var	string	This won't append, but create always fresh file,
+	 * 				so it should be unique filename.
+	 */
 	private static $filenameOnFatal = null;
+
 
 	/**
 	 * Init the Log
@@ -71,19 +79,45 @@ class Log
 	 * Add System Log Message
 	 * If you added OK or INF true will be returned else false.
 	 * --
-	 * @param	string	$type		INF|WAR|ERR|OK == information, warning, error, successfully done
 	 * @param	string	$message	Plain englisg message
-	 * @param	integer $line		__LINE__
-	 * @param	string	$file		__FILE__
+	 * @param	string	$type		INF|WAR|ERR|OK == information, warning, error, successfully done
 	 * --
 	 * @return	boolean
 	 */
-	public static function Add($type, $message, $line, $file)
+	public static function Add($message, $type='INF')
 	{
+		# Auto assign line and file
+		$BT   = debug_backtrace();
+		$line = $BT[0]['line'];
+		$file = $BT[0]['file'];
+
+		# For the sake of backward compatibility, we can switch type and message
+		if (in_array(strtoupper($message), array('INF', 'OK', 'ERR', 'WAR'))) {
+			$t = $type;
+			$type = $message;
+			$message = $t;
+		}
+
+		# Always upper case
 		$type = strtoupper($type);
 
 		# Write this message into file?
 		self::Write($type, $message, $line, $file);
+
+		# Add backtrace if error
+		if ($type === 'ERR') {
+			$message .= "\n";
+			foreach ($BT as $Trace) {
+				$trace  = '';
+				$trace .= isset($Trace['class']) ? $Trace['class'] : '';
+				$trace .= isset($Trace['type']) ? $Trace['type'] : '';
+				$trace .= isset($Trace['function']) ? $Trace['function'] . '()' : '';
+				$trace .= ' [' . basename($Trace['file']) . ' ' . $Trace['line'] . ']';
+
+
+				$message .= "\n{$trace}";
+			}
+		}
 
 		# Add Item to An Array
 		self::$Logs[] = array

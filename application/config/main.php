@@ -6,22 +6,22 @@ $AvreliaConfig = array
 	'system' => array
 	(
 		#
-		'routes'           => array
+		'routes' => array
 		(
 			/*  ****************************************************** *
 			 *          Default actions
 			 *  **************************************  */
 
 			# We'll make everything ready here
-			'before' => 'application->before()',
+			'before'    => 'application->before()',
 
 			# If there's no parameteres set in our URL, this will be called.
-			0   => 'projects->dashboard()',
+			0           => 'projects->dashboard()',
 
 			# The 404 route.
 			# If not provided / not found, the system will look for 404.php view;
 			# if that won't be found either, only 404 plain message will be shown.
-			404 => 'application->not_found_404()',
+			404         => 'application->not_found_404()',
 
 			# Trigger installation process
 			'/install/' => 'application->install()',
@@ -31,13 +31,13 @@ $AvreliaConfig = array
 			 *  **************************************  */
 
 			# Login
-			'/login/i'           => 'users->login()',
+			'/login/i'                    => 'users->login()',
 
 			# Logout
-			'/logout/i'          => 'users->logout()',
+			'/logout/i'                   => 'users->logout()',
 
 			# Register
-			'/register/i'        => 'users->register()',
+			'/register/i'                 => 'users->register()',
 
 			# Activate
 			'/activate\/([a-zA-Z0-9]*)/i' => 'users->activate(%1)',
@@ -60,8 +60,10 @@ $AvreliaConfig = array
 	# Plugs settings.
 	'plug' => array
 	(
+		'auto_load'  => array('debug'),
+
 		# Which plugs do we want to use in our application.
-		'enabled'    => array('html', 'jquery', 'form', 'database', 'session', 'validate', 'mail'),
+		'enabled'    => array('html', 'jquery', 'form', 'database', 'session', 'validate', 'mail', 'debug'),
 	),
 
 	# Cookies settings.
