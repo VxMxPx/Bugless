@@ -4,6 +4,8 @@ class projectsController
 {
 	public function dashboard()
 	{
+		if (!allow('projects/list', true)) { return false; }
+
 		View::Get('projects/list');
 	}
 	//-

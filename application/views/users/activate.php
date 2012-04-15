@@ -8,7 +8,7 @@
 		echo
 			$Form->att('class="m_top styled"')->start('register'),
 			$Form->textbox('full_name',   l('FULL_NAME')),
-			$Form->wrapStart(),
+			$Form->wrapStart('timezone_wrap'),
 				$Form->wrap(false)->att('class="half hook list_timezoneArray"')->select('continent', array(), l('TIMEZONE')),
 				$Form->wrap(false)->att('class="half hook_second list_timezoneArray right"')->select('country', array()),
 			$Form->wrapEnd(),

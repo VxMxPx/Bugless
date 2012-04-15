@@ -31,19 +31,22 @@ $AvreliaConfig = array
 			 *  **************************************  */
 
 			# Login
-			'/login/i'                    => 'users->login()',
+			'/login/i'                              => 'users->login()',
 
 			# Logout
-			'/logout/i'                   => 'users->logout()',
+			'/logout/i'                             => 'users->logout()',
 
 			# Register
-			'/register/i'                 => 'users->register()',
+			'/register/i'                           => 'users->register()',
+
+			# Resend activation mail
+			'/activate\/resend\/([0-9]*)/i'         => 'users->activate_resend(%1)',
 
 			# Activate
-			'/activate\/([a-zA-Z0-9]*)/i' => 'users->activate(%1)',
+			'/activate\/([a-zA-Z0-9]*)\/([0-9]*)/i' => 'users->activate(%1, %2)',
 
 			# Forgot password
-			'/forgot_password/i'          => 'users->forgot_password()',
+			'/forgot_password/i'                    => 'users->forgot_password()',
 
 			# Match home/$method/$Parameters
 			# Controller and method can consist only of: a-z 0-9 _

@@ -217,10 +217,13 @@ body.js #messages .mItem
 			line-height: 1em
 			font-family: 'arial black'
 			text-shadow(0 0 4px rgba(255,255,255,0.3)\, inset 1px 1px 1px 1px black)
+			border: none
 		&.color
 			color: #18382d
 			background: url(button_color_bg.png) repeat-x left bottom #70c3a8
 			box-shadow(0 0 2px rgba(0,0,0,0.75)\, inset 1px 1px 1px white\, inset 0 0 4px rgba(0,0,0,0.2))
+			&:active
+				box-shadow(0 0 2px rgba(0,0,0,0.75)\, inset -1px -1px 1px white\, inset 0 0 4px rgba(0,0,0,0.2))
 	.box
 		background-color: rgba(0,0,0,0.2)
 		box-shadow(0 0 1px rgba(255,255,255,0.25)\, inset 1px 1px 2px rgba(0,0,0,0.2))
@@ -309,12 +312,14 @@ a.button
 	padding: 6px 16px
 	text-shadow(0 0 1px #fff)
 	border-radius(4px)
-	box-shadow(0 0 1px 1px #fff inset)
+	box-shadow(0 0 0px 1px rgba(255,255,255,0.5) inset)
 	border-bottom: 1px solid #898989
 	border-right: 1px solid #898989
 	display: inline-block
 	color: #000
 	text-decoration: none
+	&:hover
+		background: url(button_bg.png) repeat-x left bottom #e7e7e7
 	&.plain
 		background: #e7e7e7
 		border: none
@@ -342,7 +347,7 @@ a.button
 	color: c_link_outside
 	.left a
 		margin-left: 10px
-		&:last-child
+		&:first-child
 			margin-left: 0
 	.right a
 		margin-right: 10px
@@ -365,11 +370,13 @@ a.button
 			button
 				float: right
 
+#not_allowed
 #generic_message
 	p.message
-		margin: padding_main 0
+		margin-top: padding_main
 		float: left
 		width: 100%
 	p.button
+		margin-top: padding_main
 		float: left
 		width: 100%

@@ -34,10 +34,11 @@ CREATE TABLE IF NOT EXISTS 'users_details' (
 	'additional'	TEXT				NULL
 );
 
--- STATEMENT: User's Permissions
--- User for general permission project id will be set to 0.
--- For non-register users the user_id will be set to 0.
-CREATE TABLE IF NOT EXISTS 'users_permissions' (
+-- STATEMENT: Permissions
+-- User for general permission project id and the user_id will be set to 0.
+-- Allowed can have values, as allow = 0 (no), 1 (yes)
+-- in general settings -1 (only unregistered), 0 (none), 1 (only registered), 2 (only admin)
+CREATE TABLE IF NOT EXISTS 'permissions' (
 	'user_id'		INTEGER		NOT NULL,
 	'project_id'	INTEGER		NOT NULL,
 	'action'		VARCHAR		NOT NULL,
@@ -170,3 +171,24 @@ INSERT INTO settings ('project_id','key','value') VALUES (0, 'mail_from', 'no-re
 INSERT INTO settings ('project_id','key','value') VALUES (0, 'site_title', 'Bugless');
 -- STATEMENT: /
 INSERT INTO settings ('project_id','key','value') VALUES (0, 'mail_registration', 'Welcome to {{site_title}}!\n\nTo activate your account, please click on the link below or paste into the url field on your browser:\n{{link}}');
+-- STATEMENT: Free fegistration of new users on/off
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (0,0,'register',-1);
+-- STATEMENT: Can login (if loggedin already, then obvious can't)
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (0,0,'login',-1);
+-- STATEMENT: Dasboard access (listing of projects)
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (0,0,'projects/list',1);
+-- STATEMENT: Dasboard access (adding of projects)
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (0,0,'projects/add',2);
+-- STATEMENT: Default user (username: root@localhost, password: root)
+INSERT INTO users ('id','uname','password','active','activation_key')
+VALUES (1, 'root@localhost','ah1074cd38c1780ad3a070d294ee6bca306e.d615053f548848fbf68141a285521d04b754314f',1,0);
+-- STATEMENT: Users details
+INSERT INTO users_details ('user_id','created_on','updated_on','full_name','timezone','language')
+VALUES (1, 20120416, 20120416, 'Root User', 'UTM','en');
+-- STATEMENT: Root user set as admin
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (1,0,'is_admin',1);

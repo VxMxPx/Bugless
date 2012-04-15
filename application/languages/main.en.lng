@@ -13,12 +13,17 @@
 !DONT_WANNA: Don't want to
 !OK: Ok
 !SAVE: Save
+!LOGOUT: Logout
+!HI_USER: Hi, {1}!
+!SETTINGS: Settings
 
 # Languages
 !ENGLISH: English
 
 # Projects
 !NEW_PROJECT: New Project
+!NO_PROJECTS_TO_DISPLAY: Oh no, there are {1 no projects} to display at the moment...
+!NO_PROJECTS_IDEA_TO_ADD: But hej! Here's an *idea*, why don't you {1 add a new project}?
 
 # Login
 !LOGIN: Login
@@ -41,7 +46,7 @@
 !USER_ACCOUNT_SUCCESSFULLY_CREATED: Your account was created
 !FAILED_TO_CREATE_ACCOUNT: Unknown error while creating your account
 !USER_ACCOUNT_CHECK_EMAIL: The activation key was send to your e-mail address {1}.
-!EMAIL_ALREADY_IN_USE: Selected e-mail is already in use.
+!EMAIL_ALREADY_IN_USE: The e-mail `{1}` is already in use.
 
 # Activate
 !ACCOUNT_ACTIVATE: Thank you!
@@ -53,8 +58,22 @@ None of the fields are required.
 !TIMEZONE: Timezone
 !LANGUAGE: Language
 !USER_ACCOUNT_ACTIVATE_INVALID_KEY: Invalid activation key.
-!USER_ACCOUNT_ACTIVATE_WAIT: Something ain't right...
+!USER_ACCOUNT_ACTIVATE_WAIT: Something ain't ok...
 !USER_ACCOUNT_ACTIVATE_WAIT_DESCRIPTION: The key isn't correct!
 !USER_ACCOUNT_ACTIVATE_WAIT_MESSAGE: It seems that something's wrong with your key.<br />
 If you want so, we can send you new activation key.
 !OK_SEND_IT: Ok, send it!
+
+# Activate resend
+!ACCOUNT_RESEND_CHECK_MAIL: Check your e-mail
+!ACCOUNT_RESEND_MESSAGE: The message with new activation key was send to your e-mail.
+!ACCOUNT_RESEND_FAILED: Oppps, this didn't work!
+!ACCOUNT_RESEND_FAILED_MESSAGE: Either account was already activated or doesn't exists at all.<br /><br />
+What you can do next is try to {2 login} with your current account or {3 recover} your password.
+If none of mentioned work, then try to {1 register} a new account.
+
+# Not allowed
+!NOT_ALLOWED_TITLE: You can't access this!
+!NOT_ALLOWED_MESSAGE: You don't have apropriate permissions to access this page.
+!NOT_ALLOWED_LOGIN:  Perhaps you need to {1 login}.
+!NOT_ALLOWED_LOGIN_OR_REGISTER: Perhaps you need to {1 login} or {2 register}.

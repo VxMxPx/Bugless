@@ -74,3 +74,58 @@ function timezoneArray()
 	return $NewList;
 }
 //-
+
+/**
+ * Check if user is logged in or not.
+ * --
+ * @return	boolean
+ */
+function loggedin()
+{
+	return cSession::IsLoggedin();
+}
+//-
+
+/**
+ * Check if particular action is allowed.
+ * --
+ * @param	string	$what
+ * @param	boolean	$message	If set to true, them message will be rendered,
+ * 								informing user, about the access restriction.
+ * --
+ * @return	boolean
+ */
+function allow($what, $message=false)
+{
+	if (!Model::Get('permissions')->canAccess($what)) {
+		if ($message) {
+			View::Get('application/not_allowed');
+		}
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+//-
+
+/**
+ * Get particular information about user
+ * --
+ * @param	string	$key
+ * @param	boolean	$return
+ * --
+ * @return	string
+ */
+function userInfo($key, $return=false)
+{
+	$return = Model::Get('user')->{$key};
+
+	if ($return) {
+		return $return;
+	}
+	else {
+		echo $return;
+	}
+}
+//-

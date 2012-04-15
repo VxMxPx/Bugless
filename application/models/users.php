@@ -47,16 +47,16 @@ class usersModel
 
 		# New check if we have user with such e-mail already in our database
 		if (cDatabase::Find('users', array('uname' => $Data['email']))->count() > 0) {
-			uMessage::Add('WAR', l('EMAIL_ALREADY_IN_USE'), __FILE__);
+			uMessage::Add('WAR', l('EMAIL_ALREADY_IN_USE', $Data['email']), __FILE__);
 			return false;
 		}
-		
+
 		# Add additional fields
 		$Data['id']     = null;
 		$Data['active'] = false;
 		$Data['activation_key'] = vString::Random(40, 'aA1');
-		$Data['uname'] = $Data['email'];
-		$Data['password'] = $Data['pwd'];
+		$Data['uname']          = $Data['email'];
+		$Data['password']       = vString::Hash($Data['pwd'], false, true);
 
 		unset($Data['email'], $Data['pwd'], $Data['pwd_again']);
 
@@ -66,29 +66,121 @@ class usersModel
 		# Was this successful?
 		if ($Record->succeed())
 		{
-			$link = url("activate/{$Data['activation_key']}");
-
-			$mailContent = Cfg::Get('bugless/mail_registration');
-			$mailContent = str_replace(array('{{link}}', '{{site_title}}'), array($link, Cfg::Get('bugless/site_title')), $mailContent);
-
-			$Mail = new cMail();
-			$Mail
-				->from(Cfg::Get('bugless/mail_from'))
-				->to($Data['uname'])
-				->subject(l('EMAIL_CONFORMATION_SUBJECT', Cfg::Get('bugless/site_title')))
-				->message(false, $mailContent)
-				->send();
+			$this->send_activation_email($Data['activation_key'], $Record->insertedId(), $Data['uname']);
 
 			# Last insertion
 			return
 			cDatabase::Create(array(
-				'user_id'    => $Record->insertId(),
+				'user_id'    => $Record->insertedId(),
 				'created_on' => gmdate('YmdHis'),
 				'updated_on' => gmdate('YmdHis'),
 				'timezone'   => 'GMT',
 				'language'   => 'en'
 			), 'users_details')->succeed();
 		}
+	}
+	//-
+
+	/**
+	 * Will activate user's account if possible
+	 * --
+	 * @param	string	$key
+	 * @param	integer	$userId
+	 * --
+	 * @return	boolean
+	 */
+	public function activate($key, $userId)
+	{
+		$key    = vString::Clean($key, 40, 'aA1');
+		$userId = (int) $userId;
+
+		if (strlen(trim($key)) < 40) {
+			Log::Add("Key must be exactly 40 characters long.", 'ERR');
+			return false;
+		}
+
+		if ($userId < 1) {
+			Log::Add("User's id must be valid postive number `{$userId}`.", 'WAR');
+			return false;
+		}
+
+		$User = cDatabase::Find('users', array('activation_key' => $key, 'id' => $userId, 'active' => 0));
+
+		if ($User->count() === 1)
+		{
+			cDatabase::Update(array(
+				'activation_key' => 0,
+				'active'         => 1
+			), 'users', array('id' => $userId));
+
+
+			return cSession::LoginId($userId);
+		}
+		else {
+			return false;
+		}
+	}
+	//-
+
+	/**
+	 * Will regenerate and resend activation key
+	 * --
+	 * @param	integer	$userId
+	 * --
+	 * @return	boolean
+	 */
+	public function activate_resend($userId)
+	{
+		# First check if we have apropriate user
+		$userId = (int) $userId;
+
+		if ($userId < 1) {
+			Log::Add("User's id must be valid postive number `{$userId}`.", 'WAR');
+			return false;
+		}
+
+		$User = cDatabase::Find('users', array('activation_key !=' => 0, 'id' => $userId, 'active' => 0));
+
+		if ($User->count() === 1)
+		{
+			$User = $User->asArray(0);
+			$activationKey = vString::Random(40, 'aA1');
+
+			if ($this->send_activation_email($activationKey, $User['id'], $User['uname'])) {
+				return
+					cDatabase::Update(array(
+						'activation_key' => $activationKey,
+					), 'users', array('id' => $userId));
+			}
+		}
+
+		return false;
+	}
+	//-
+
+	/**
+	 * Will send activation key to particular user
+	 * --
+	 * @param	string	$key
+	 * @param	integer	$userId
+	 * --
+	 * @return	boolean
+	 */
+	private function send_activation_email($key, $userId, $userEmail)
+	{
+		$link = url("activate/{$key}/".$userId);
+
+		$mailContent = Cfg::Get('bugless/mail_registration');
+		$mailContent = str_replace(array('{{link}}', '{{site_title}}'), array($link, Cfg::Get('bugless/site_title')), $mailContent);
+
+		$Mail = new cMail();
+
+		return $Mail
+				->from(Cfg::Get('bugless/mail_from'))
+				->to($userEmail)
+				->subject(l('EMAIL_CONFORMATION_SUBJECT', Cfg::Get('bugless/site_title')))
+				->message(false, $mailContent)
+				->send();
 	}
 	//-
 }

@@ -3,11 +3,13 @@
 
 <div class="page has_sidebar" id="projects_dashboard">
 
-	<div class="box construction">
+	<div class="box">
 		<span class="c_ico pointer_r"></span>
-		<p class="faded">Oh no, there are <span class="dark">no projects</span> to display at the moment...</p>
-		<br />
-		<h2>But hej! Here's an *idea*, why don't you <a href="#"><strong>add a new project</strong></a>?</h2>
+		<p class="faded"><?php le('NO_PROJECTS_TO_DISPLAY', lh('span.dark')); ?></p>
+		<?php if (allow('projects/add')): ?>
+			<br />
+			<h2><?php le('NO_PROJECTS_IDEA_TO_ADD', lh('a(#) strong')); ?></h2>
+		<?php endif; ?>
 	</div>
 
 </div> <!-- /#projects_dashboard -->

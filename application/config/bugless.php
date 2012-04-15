@@ -9,7 +9,7 @@ $AvreliaConfig['bugless'] = array
 	# On other hand, if someone will wanted to run installer, and that value is set,
 	# he won't be able (preventing silly, dangerious fatal rewrites of database).
 	#
-	# However, if you're paranoid, you can set this value here also, makind it almost
+	# However, if you're paranoid, you can set this value here also, making it almost
 	# like a harware setting - as these config files here can be edit only manually.
 	'installed' => false,
 );
