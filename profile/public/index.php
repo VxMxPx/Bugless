@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 
 # Try to include paths file (change this in case of problems!)
-include(realpath(dirname(__FILE__).'/../config/define.php'));
+include(realpath(dirname(__FILE__).'/../../bugless/config/define.php'));
 
 # Load Framework Init
 if (file_exists(SYSPATH . '/core/avrelia.php')) {
