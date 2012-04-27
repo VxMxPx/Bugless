@@ -27,7 +27,7 @@ class usersController
 				}
 			}
 		}
-
+		
 		View::Get('users/register');
 	}
 	//-

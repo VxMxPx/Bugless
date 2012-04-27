@@ -20,7 +20,7 @@ class Avrelia
 	const AUTHOR    = 'Avrelia';
 	const FOUNDER   = 'Marko Gajšt';
 	const WEBSITE   = 'http://framework.avrelia.com';
-	const COPYRIGHT = '2010';
+	const COPYRIGHT = '2010-2012';
 
 	/**
 	 * @var	array	Items which needs to be autoloaded...
@@ -35,7 +35,7 @@ class Avrelia
 	/**
 	 * Will init the framework
 	 * --
-	 * @return	void
+	 * @return	$this
 	 */
 	public function init()
 	{
@@ -93,6 +93,23 @@ class Avrelia
 		# Error Handling
 		set_error_handler('avreliaErrorHandler');
 
+		# Init the cache
+		Cache::Init();
+
+		# Init the input
+		Input::Init();
+
+		# Set default language
+		Language::SetDefaults(Cfg::Get('system/languages'));
+
+		# MUST be called before we can use Plugs.
+		Plug::Init(Cfg::Get('plug/enabled'));
+
+		# Now scan and autoload plugs
+		if (Cfg::Get('plug/enabled')) {
+			Plug::Inc(Cfg::Get('plug/auto_load'));
+		}
+
 		# Trigger event after framework initialization
 		Event::Trigger('avrelia.after.init');
 
@@ -110,12 +127,6 @@ class Avrelia
 		# We will decide where to go from here...
 		Event::Trigger('avrelia.before.boot');
 
-		# Init the input
-		Input::Init();
-
-		# Set default language
-		Language::SetDefaults(Cfg::Get('system/languages'));
-
 		# Is application offline?
 		if (Cfg::Get('system/offline') === true) {
 			$message = Cfg::Get('system/offline_message');
@@ -123,14 +134,6 @@ class Avrelia
 				$message = View::Get(substr($message,5))->doReturn();
 			}
 			HTTP::Status503_ServiceUnavailable($message);
-		}
-
-		# MUST be called before we can use Plugs.
-		Plug::Init(Cfg::Get('plug/enabled'));
-
-		# Now scan and autoload plugs
-		if (Cfg::Get('plug/enabled')) {
-			Plug::Inc(Cfg::Get('plug/auto_load'));
 		}
 
 		$requestUri = trim(Input::GetRequestUri(false), '/');
@@ -203,7 +206,7 @@ class Avrelia
 	 * @param	string	$callName
 	 * @param	array	$Patterns
 	 * --
-	 * @return	void
+	 * @return	boolean
 	 */
 	private function routeCall($callName, $Patterns=false)
 	{
