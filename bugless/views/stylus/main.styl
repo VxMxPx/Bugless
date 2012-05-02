@@ -263,12 +263,12 @@ body.js #messages .mItem
 			background-image: url(box_ico_pointer_r.png)
 	&.construction
 		padding-bottom: padding_main + 3
-	&.half
-		width: 310px
 	&.wide
 		width: 680px
 	&.full
 		width: width_full - 40
+	&.half
+		width: 310px
 
 // Form Styled ===========================================
 form.styled
@@ -302,6 +302,11 @@ form.styled
 			border-color: c_link
 			box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px c_link)
 			outline: none
+		&:disabled
+			border-color: #bbb
+			box-shadow: none
+			background-image: none
+			background-color: #ccc
 
 button
 a.button
@@ -376,7 +381,13 @@ a.button
 		margin-top: padding_main
 		float: left
 		width: 100%
-	p.button
+	p.buttons
 		margin-top: padding_main
 		float: left
 		width: 100%
+
+#projects_dashboard .box.half
+	float: left
+	margin-top: padding_main
+	&:nth-child(odd)
+		float: right

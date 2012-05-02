@@ -26,7 +26,7 @@ class applicationController
 		cJquery::Add();
 
 		# Bugless javaScript
-		cHTML::AddFooter('<script src="'.url('/js/bugless.js').'"></script>', 'bugless.js');
+		cHTML::AddFooter('<script src="'.url('/js/bugless.min.js').'"></script>', 'bugless.js');
 	}
 	//-
 

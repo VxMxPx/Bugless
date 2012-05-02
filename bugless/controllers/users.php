@@ -2,6 +2,12 @@
 
 class usersController
 {
+	public function __construct()
+	{
+		jsController('users');
+	}
+	//-
+
 	/**
 	 * Will register the user
 	 * --

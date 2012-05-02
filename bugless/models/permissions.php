@@ -41,11 +41,12 @@ class permissionsModel
 
 		$Result = $Query->execute();
 
-		if ($Result->succeed()) {
+		if ($Result->count() > 0) {
 			$Permissions = $Result->asArray();
 
 			$isAdmin = false;
 
+			# Check, is it admin
 			foreach ($Permissions as $Permission) {
 				if ($Permission['action'] === 'is_admin'
 					&& (int) $Permission['user_id'] === $id

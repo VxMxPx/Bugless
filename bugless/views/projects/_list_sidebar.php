@@ -1,7 +1,9 @@
 <div class="sidebar" id="projects_list_sidebar">
+	<?php if (allow('projects/add')): ?>
 	<div class="group">
-		<a href="#" class="button huge color"><?php le('NEW_PROJECT'); ?></a>
+		<a href="#" class="button huge color projects_add"><?php le('NEW_PROJECT'); ?></a>
 	</div>
+	<?php endif; ?>
 
 	<div class="box">
 		<div class="group left">

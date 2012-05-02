@@ -129,3 +129,16 @@ function userInfo($key, $return=false)
 	}
 }
 //-
+
+/**
+ * Will execute particular javaScript controller
+ * --
+ * @param	string	$name	The name of controller we wanna execute
+ * --
+ * @return	void
+ */
+function jsController($name)
+{
+	cHTML::AddFooter('<script>Bugless.run(\''.$name.'\');</script>', 'jsClass');
+}
+//-

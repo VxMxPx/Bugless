@@ -1,94 +1,164 @@
-(function($e, window, undefined) {
+(function($, window, undefined) {
 
-	var Messages = {
+	var Bugless = {
+		// List of controllers to be autorun and loaded controllers
+		List : {
+			autorun: ['global'],
+			controller: {}
+		},
 
 		/**
-		 * Will initialize messages
-		 * --
-		 * @returns	void
+		 * Register new controller or model
+		 * @param  {string} name    controller's / model's name
+		 * @param  {string} type    type: controller || model
+		 * @param  {object} content
 		 */
-		Init : function() {
-
-			var $list = $('#messages');
-
-			if ($list.length) {
-
-				$list.show();
-
-				setTimeout(function() {
-					$list.fadeOut('normal', function() {
-						$list.remove();
-					});
-				}, 8000);
-
-				$list.find(".mItem").each(function(index) {
-					$message = $(this);
-					$message.delay(index*200).fadeIn();
-
-					$message.on('click', function() {
-						$(this).fadeOut(120);
-					});
-
-					$message.on('mouseenter', function() {
-						$(this).addClass('over');
-					})
-					.on('mouseleave', function() {
-						$(this).removeClass('over');
-					});
-				});
+		register: function(name, type, content) {
+			if (type === 'controller') {
+				this.List[type][name] = content;
 			}
+			else if (type === 'model') {
+				Bugless[name] = content;
+			}
+			else {
+				console.warn('Invalid type provided: ' + type);
+			}
+		},
+
+		/**
+		 * Will autorun controllers
+		 */
+		autorun: function() {
+			for (var i = 0; i < this.List.autorun.count; i++) {
+				this.run(this.autorunList[i]);
+			}
+		},
+
+		/**
+		 * Will run particular controller
+		 * @param  {string} controllerName Controller's name
+		 */
+		run: function(controllerName) {
+			this.List.controller[controllerName].init();
+		},
+
+		init: function() {
+			this.autorun();
+			this.Messages.init();
 		}
-		//--
-
 	};
-	//--
 
-	/**
-	 * Some global basic functions, valid all arround
-	 */
-	var System = {
-		Init : function() {
-			// Connect select => array
-			$('select.hook').each(function() {
-				var $this   = $(this),
-					classes = $this.attr('class').split(' '),
-					id_class = '',
-					list     = '';
+	
 
-				$this.on('change keyup', function() {
+Bugless.register('global', 'controller', {
+	init: function() {
+		// Nothing to see here...
+	}
+});	
 
-					$('select.list_'+id_class+'.hook_second').each(function() {
-						var items = '';
+Bugless.register('projects', 'controller', {
 
-						for(key in list[$this.attr('value')]) {
-							items += '<option value="'+key+'">'+list[$this.attr('value')][key]+'</option>';
-						}
+	newProject: function() {
+		$('.no_projects').fadeOut('fast');
+	},
 
-						$(this).html(items);
-					});
+	init: function() {
+		$('.projects_add').on('click', this.newProject);
+	}
+});	
+
+Bugless.register('users', 'controller', {
+	init: function() {
+		// Connect select on activation
+		if (typeof timezoneArray !== 'undefined') {
+			Bugless.Select.connect('select.tz_continent', 'select.tz_country', timezoneArray);
+		}
+	}
+});	
+
+Bugless.register('Messages', 'model', {
+	init: function() {
+		$list = $('#messages');
+
+		if ($list.length) {
+
+			$list.show();
+
+			setTimeout(function() {
+				$list.fadeOut('normal', function() {
+					$list.remove();
+				});
+			}, 8000);
+
+			$list.find(".mItem").each(function(index) {
+				$message = $(this);
+				$message.delay(index*200).fadeIn();
+
+				$message.on('click', function() {
+					$(this).fadeOut(120);
 				});
 
-				for(var i = 0; i<classes.length; i++) {
-					if (classes[i].substr(0,5) == 'list_') {
-						var items = '';
-
-						id_class = classes[i].substr(5);
-						list     = window[id_class];
-
-						for(key in list) {
-							items += '<option value="'+key+'">'+key+'</option>';
-						}
-
-						$this.html(items).trigger('keyup');
-					}
-				}
+				$message.on('mouseenter', function() {
+					$(this).addClass('over');
+				})
+				.on('mouseleave', function() {
+					$(this).removeClass('over');
+				});
 			});
 		}
-	};
-	//--
+	}
+});	
 
-	// Init All
-	Messages.Init();
-	System.Init();
+Bugless.register('Select', 'model', {
+
+	/**
+	 * Will connect two selects together
+	 * @param  {string} first  Selector for first select (the one which is static)
+	 * @param  {string} second Selector for second select (the one which is dynamic)
+	 * @param  {object} values List of all values, need to have key == first.value
+	 */
+	connect: function(first, second, values) {
+
+		$(first).each(function() {
+			var $this = $(this),
+				items = '';
+
+			$this.on('change keyup', function() {
+
+				$(second).each(function() {
+					var items = '';
+
+					for(var key in values[$this.attr('value')]) {
+						if (key) {
+							items += '<option value="'+key+'">'+values[$this.attr('value')][key]+'</option>';
+						}
+					}
+
+					if (items !== '') {
+						$(this).html(items);
+						$(this).attr('disabled', false);
+					}
+					else {
+						$(this).html('');
+						$(this).attr('disabled', 'disabled');
+					}
+				});
+			});
+
+			for(var key in values) {
+				items += '<option value="'+key+'">'+key+'</option>';
+			}
+
+			$this.html(items).trigger('keyup');
+		});
+	}
+
+});
+	
+
+	Bugless.init();
+
+	// Export to public space!
+	window.Bugless = Bugless;
 
 }(jQuery, window));
