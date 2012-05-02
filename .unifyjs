@@ -1,0 +1,112 @@
+<?php
+
+# Replace //@include path/to/file.js with actual file content
+function fixIncludes($match)
+{
+	global $basedir;
+
+	$fullpath = $basedir . '/' . trim($match[1]);
+
+	if (file_exists($fullpath)) {
+		return "\n\n" . file_get_contents($fullpath);
+	}
+	else {
+		say('WAR', "File not found: {$fullpath}");
+	}
+}
+
+# Caclculate all modifications of files - return md5 hash
+function calcMod($basedir)
+{
+	$finalOutput = '';
+	$files = scandir($basedir);
+	unset($files[0], $files[1]);
+
+	foreach ($files as $file) {
+		$newPath = $basedir . '/' . $file;
+		if (is_dir($newPath)) {
+			$finalOutput .= calcMod($newPath);
+		}
+		else {
+			$finalOutput .= md5_file($newPath);
+		}
+	}
+
+	return $finalOutput;
+}
+
+function say($type, $message, $newLine=true)
+{
+	switch (strtolower($type))
+	{
+		case 'err':
+			$color = "\x1b[31;01m";
+			break;
+
+		case 'war':
+			$color = "\x1b[33;01m";
+			break;
+
+		case 'ok':
+			$color = "\x1b[32;01m";
+			break;
+
+		default:
+			$color = null;
+	}
+
+	echo
+		(!is_null($color) ? $color : ''),
+		$message,
+		"\x1b[39;49;00m";
+
+	if ($newLine)
+	{
+		echo "\n";
+	}
+
+	flush();
+}
+
+// ============================================================
+
+$input  = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : false;
+$output = isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : false;
+
+if (!$input || !$output) {
+	die("You must provide input and output file!\n.unifyjs path/to/input.js path/to/output.js\n");
+}
+
+# Fixes
+$input   = realpath($input);
+$basedir = dirname($input);
+$outputfix = substr($output, 0, -3) . '.min.js';
+
+if (!file_exists($input)) {
+	die("File not found: {$input}\n");
+}
+
+if (!is_dir(dirname($output))) {
+	die("Location not found: " . dirname($output) . "\n");
+}
+
+$calcMod = null;
+
+do {
+	$r = calcMod($basedir);
+	if ($calcMod != $r) {
+		$calcMod = $r;
+		$contents = file_get_contents($input);
+		$contents = preg_replace_callback('/\/\/@include (.*?)\s/', 'fixIncludes', $contents);
+
+		if (file_put_contents($output, $contents)) {
+			exec("uglifyjs -o {$outputfix} {$output}");
+			say('OK', "Saved: {$output}");
+		}
+		else {
+			say('ERR', "Failed: {$output}");
+		}
+	}
+	sleep(2);
+}
+while(1 == 1); # Forever!
