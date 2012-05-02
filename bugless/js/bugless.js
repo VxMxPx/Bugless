@@ -54,8 +54,6 @@
 	//@include models/messages.js
 	//@include models/select.js
 
-	
-
 	Bugless.init();
 
 	// Export to public space!

@@ -154,8 +154,6 @@ Bugless.register('Select', 'model', {
 	}
 
 });
-	
-
 	Bugless.init();
 
 	// Export to public space!
