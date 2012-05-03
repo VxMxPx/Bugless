@@ -16,6 +16,9 @@
 !LOGOUT: Logout
 !HI_USER: Hi, {1}!
 !SETTINGS: Settings
+!TITLE: Title
+!DESCRIPTION: Description
+!CREATE: Create
 
 # Languages
 !ENGLISH: English

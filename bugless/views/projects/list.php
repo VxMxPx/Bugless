@@ -13,12 +13,18 @@
 	</div>
 
 	<?php if (allow('projects/add')): ?>
-	<div class="box half new_project">
-		1
-	</div>
-
-	<div class="box half new_project">
-		2
+	<div class="box half construction project_add">
+		<?php
+		echo
+			$Form->att('class="styled flat"')->start('#'),
+			$Form->att('class="big" placeholder="'.l('TITLE').'"')->textbox('title'),
+			$Form->att('class="small resize_none" placeholder="'.l('DESCRIPTION').'" rows="4"')->textarea('description'),
+			$Form->wrapStart('buttons'),
+			cHTML::Link(l('CANCEL'), '#', 'class="cancel button plain"'),
+			$Form->wrap(false)->att('class="right"')->button(l('CREATE')),
+			$Form->wrapEnd(),
+			$Form->end();
+		?>
 	</div>
 	<?php endif; ?>
 

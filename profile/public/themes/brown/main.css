@@ -62,14 +62,20 @@ form.styled .field{float:left;width:100%;margin-bottom:20px;}
 form.styled .field:last-child{margin-bottom:0}
 form.styled label{width:100%;padding-bottom:4px;display:block}
 form.styled select,form.styled input[type="text"],form.styled input[type="password"],form.styled textarea{width:100%;padding:4px;border:1px solid #8b8b8b;border-radius:4px;-moz-border-radius:4px;-o-border-radious:4px;-webkit-border-radius:4px;-ms-border-radius:4px;box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;box-shadow:0 0 1px 1px #fff inset , 0 0 3px rgba(0,0,0,0.3);-moz-box-shadow:0 0 1px 1px #fff inset , 0 0 3px rgba(0,0,0,0.3);-o-box-shadow:0 0 1px 1px #fff inset , 0 0 3px rgba(0,0,0,0.3);-webkit-box-shadow:0 0 1px 1px #fff inset , 0 0 3px rgba(0,0,0,0.3);-ms-box-shadow:0 0 1px 1px #fff inset , 0 0 3px rgba(0,0,0,0.3);background:url("input_bg.png") repeat-x left top #f5f5f5;font-family:arial,helvetica,sans-serif;}
+form.styled select.small,form.styled input[type="text"].small,form.styled input[type="password"].small,form.styled textarea.small{font-size:12px}
+form.styled select.big,form.styled input[type="text"].big,form.styled input[type="password"].big,form.styled textarea.big{font-size:24px}
 form.styled select.half,form.styled input[type="text"].half,form.styled input[type="password"].half,form.styled textarea.half{width:48%}
 form.styled select:focus,form.styled input[type="text"]:focus,form.styled input[type="password"]:focus,form.styled textarea:focus{border-color:#069;box-shadow:0 0 1px 1px #fff inset , 0 0 3px #069;-moz-box-shadow:0 0 1px 1px #fff inset , 0 0 3px #069;-o-box-shadow:0 0 1px 1px #fff inset , 0 0 3px #069;-webkit-box-shadow:0 0 1px 1px #fff inset , 0 0 3px #069;-ms-box-shadow:0 0 1px 1px #fff inset , 0 0 3px #069;outline:none}
 form.styled select:disabled,form.styled input[type="text"]:disabled,form.styled input[type="password"]:disabled,form.styled textarea:disabled{border-color:#bbb;box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-webkit-box-shadow:none;-ms-box-shadow:none;background-image:none;background-color:#ccc}
+form.styled.flat select,form.styled.flat input[type="text"],form.styled.flat input[type="password"],form.styled.flat textarea{border:none;box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-webkit-box-shadow:none;-ms-box-shadow:none;background:#f5f5f5}
+textarea.resize_none{resize:none}
+textarea.resize_horizontal{resize:horizontal}
+textarea.resize_vertical{resize:vertical}
 button,a.button{font-size:14px;background:url("button_bg.png") repeat-x left bottom #e7e7e7;border:none;padding:6px 16px;text-shadow:0 0 1px #fff;-moz-text-shadow:0 0 1px #fff;-o-text-shadow:0 0 1px #fff;-webkit-text-shadow:0 0 1px #fff;-ms-text-shadow:0 0 1px #fff;border-radius:4px;-moz-border-radius:4px;-o-border-radious:4px;-webkit-border-radius:4px;-ms-border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,0.5) inset;-moz-box-shadow:0 0 0 1px rgba(255,255,255,0.5) inset;-o-box-shadow:0 0 0 1px rgba(255,255,255,0.5) inset;-webkit-box-shadow:0 0 0 1px rgba(255,255,255,0.5) inset;-ms-box-shadow:0 0 0 1px rgba(255,255,255,0.5) inset;border-bottom:1px solid #898989;border-right:1px solid #898989;display:inline-block;color:#000;text-decoration:none;}
 button:hover,a.button:hover{background:url("button_bg.png") repeat-x left bottom #e7e7e7}
 button.plain,a.button.plain{background:#e7e7e7;border:none;font-weight:normal;box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-webkit-box-shadow:none;-ms-box-shadow:none;border-bottom:1px solid #e7e7e7;border-right:1px solid #e7e7e7}
 button:active,a.button:active{color:#000;border:none;border-top:1px solid #898989;border-left:1px solid #898989;background:url("input_bg.png") repeat-x left top #f5f5f5;outline:none}
-a.button{padding:7px 16px}
+a.button{padding:9px 16px 8px 16px}
 #navigation_main{width:100%;clear:both;float:left;margin-bottom:30px;color:#8e7d74;}
 #navigation_main .left a{margin-left:10px;}
 #navigation_main .left a:first-child{margin-left:0}
@@ -80,5 +86,5 @@ a.button{padding:7px 16px}
 #login .field.button button,#forgot_password .field.button button,#register .field.button button,#activate_account .field.button button{float:right}
 #not_allowed p.message,#generic_message p.message{margin-top:20px;float:left;width:100%}
 #not_allowed p.buttons,#generic_message p.buttons{margin-top:20px;float:left;width:100%}
-#projects_dashboard .box.half{float:left;margin-top:20px;}
+#projects_dashboard .box.half{float:left;margin-bottom:20px;}
 #projects_dashboard .box.half:nth-child(odd){float:right}

@@ -48,6 +48,10 @@ c_top_line          = #70c3a8
 c_link              = #006699
 c_link_outside      = #8e7d74
 c_selection_outside = #28201c
+c_input_background  = #f5f5f5
+
+fs_big   = 24px
+fs_small = 12px
 
 
 // Global Elements =======================================
@@ -294,8 +298,12 @@ form.styled
 		border-radius(4px)
 		box-sizing()
 		box-shadow(0 0 1px 1px #fff inset\, 0px 0px 3px rgba(0, 0, 0, 0.3))
-		background: url(input_bg.png) repeat-x left top #f5f5f5
+		background: url(input_bg.png) repeat-x left top c_input_background
 		font-family: font_family
+		&.small
+			font-size: fs_small
+		&.big
+			font-size: fs_big
 		&.half
 			width: 48%
 		&:focus
@@ -307,6 +315,23 @@ form.styled
 			box-shadow: none
 			background-image: none
 			background-color: #ccc
+	&.flat
+		select,
+		input[type="text"],
+		input[type="password"],
+		textarea
+			border: none
+			box-shadow(none)
+			background: c_input_background
+
+textarea
+	&.resize_none
+		resize: none
+	&.resize_horizontal
+		resize: horizontal
+	&.resize_vertical
+		resize: vertical
+
 
 button
 a.button
@@ -337,10 +362,10 @@ a.button
 		border: none
 		border-top: 1px solid #898989
 		border-left: 1px solid #898989
-		background: url(input_bg.png) repeat-x left top #f5f5f5
+		background: url(input_bg.png) repeat-x left top c_input_background
 		outline: none
 a.button
-	padding: 7px 16px
+	padding: 9px 16px 8px 16px
 
 
 // Specific ==============================================
@@ -388,6 +413,6 @@ a.button
 
 #projects_dashboard .box.half
 	float: left
-	margin-top: padding_main
+	margin-bottom: padding_main
 	&:nth-child(odd)
 		float: right
