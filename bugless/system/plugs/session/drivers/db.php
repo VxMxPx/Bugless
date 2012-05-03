@@ -57,12 +57,8 @@ class cSessionDriverDb implements cSessionDriverInterface
 
 		foreach ($Config['defaults'] as $DefUser)
 		{
-			$User['id']       = null;
-			$User['uname']    = $DefUser['uname'];
-			$User['password'] = vString::Hash($DefUser['password'], false, true);
-			$User['active']   = true;
-
-			cDatabase::Create($User, $Config['db']['users_table']);
+			$DefUser['password'] = vString::Hash($DefUser['password'], false, true);
+			cDatabase::Create($DefUser, $Config['db']['users_table']);
 		}
 
 		return true;
@@ -232,7 +228,7 @@ class cSessionDriverDb implements cSessionDriverInterface
 
 		if ($password) {
 			if ($User['password'] !== vString::Hash($password, $User['password'], true)) {
-				Log::Add('INF', "Invalid password entered for: `{$username}`.", __LINE__, __FILE__);
+				Log::Add('INF', "Invalid password entered for: `{$user}`.", __LINE__, __FILE__);
 				return false;
 			}
 		}

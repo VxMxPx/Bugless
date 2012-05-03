@@ -63,10 +63,10 @@ $AvreliaConfig = array
 	# Plugs settings.
 	'plug' => array
 	(
-		'auto_load'  => array('debug'),
+		'auto_load'  => array(),
 
 		# Which plugs do we want to use in our application.
-		'enabled'    => array('html', 'jquery', 'form', 'database', 'session', 'validate', 'mail', 'debug'),
+		'enabled'    => array('html', 'jquery', 'form', 'database', 'session', 'validate', 'mail'),
 	),
 
 	# Cookies settings.
