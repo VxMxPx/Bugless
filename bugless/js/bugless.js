@@ -53,6 +53,7 @@
 	//@include controllers/users.js
 	//@include models/messages.js
 	//@include models/select.js
+	//@include models/tags.js
 
 	Bugless.init();
 

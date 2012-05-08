@@ -48,6 +48,9 @@ $AvreliaConfig = array
 			# Forgot password
 			'/forgot_password/i'                    => 'users->forgot_password()',
 
+			# Projects
+			'/tags-cleanup.json\/(projects|bugs)/i' => 'application->jsTagsCleanup(%1)',
+
 			# Match home/$method/$Parameters
 			# Controller and method can consist only of: a-z 0-9 _
 			# Parameter can be any length and contain (almost) any character.

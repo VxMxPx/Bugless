@@ -5,6 +5,7 @@ Bugless.register('projects', 'controller', {
 	},
 
 	init: function() {
+		Bugless.Tags.register('fieldset.tags_container', Bugless_TagsCleanupUrl);
 		$('.projects_add').on('click', this.newProject);
 	}
 });

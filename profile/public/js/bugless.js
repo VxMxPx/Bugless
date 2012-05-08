@@ -63,6 +63,7 @@ Bugless.register('projects', 'controller', {
 	},
 
 	init: function() {
+		Bugless.Tags.register('fieldset.tags_container', Bugless_TagsCleanupUrl);
 		$('.projects_add').on('click', this.newProject);
 	}
 });	
@@ -153,6 +154,31 @@ Bugless.register('Select', 'model', {
 		});
 	}
 
+});	
+
+Bugless.register('Tags', 'model', {
+
+	onInputEvent: function(values, url) {
+		$.post(url, values);
+	},
+
+	register: function(container, url) {
+		var self       = this,
+			$container = $(container),
+			$input     = $container.find('input.tags'),
+			$addButton = $container.find('a.button.tags');
+
+		$input.on('keypress', function(event) {
+			if (event.which == 13) {
+				self.onInputEvent($input.val(), url);
+				event.preventDefault();
+			}
+		});
+
+		$addButton.on('click', function() {
+			self.onInputEvent($input.val(), url);
+		});
+	}
 });
 	Bugless.init();
 

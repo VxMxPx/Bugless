@@ -142,3 +142,19 @@ function jsController($name)
 	cHTML::AddFooter('<script>Bugless.run(\''.$name.'\');</script>', 'jsClass');
 }
 //-
+
+/**
+ * Take list of tags, and clean it, - check for tags which exits,
+ * check for too long tags names and make them shorter, 
+ * return list of valid tags with color code included.
+ * --
+ * @param	string	$tags	List of tags: tag,another,third
+ * @param	string	$type	Type of request: projects / bugs
+ * --
+ * @return	array
+ */
+function tagsCleanup($tags, $type)
+{
+	return $type;
+}
+//-

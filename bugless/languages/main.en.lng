@@ -28,6 +28,10 @@
 !NO_PROJECTS_TO_DISPLAY: Oh no, there are {1 no projects} to display at the moment...
 !NO_PROJECTS_IDEA_TO_ADD: But hej! Here's an *idea*, why don't you {1 add a new project}?
 
+# Tagging
+!ADD_NEW_TAG: Add new tag
+!NO_TAGS_TO_SELECT_RIGHT_NOW: At the moment there's no tags.
+
 # Login
 !LOGIN: Login
 !LOGIN_TAGLINE: Please enter your username (e-mail) and password.

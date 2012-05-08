@@ -3,30 +3,18 @@
 
 <div class="page has_sidebar" id="projects_dashboard">
 
-	<div class="box no_projects">
+	<!-- div class="box no_projects">
 		<span class="c_ico pointer_r"></span>
 		<p class="faded"><?php le('NO_PROJECTS_TO_DISPLAY', lh('span.dark')); ?></p>
 		<?php if (allow('projects/add')): ?>
 			<br />
 			<h2><?php le('NO_PROJECTS_IDEA_TO_ADD', lh('a(#).projects_add strong')); ?></h2>
 		<?php endif; ?>
-	</div>
+	</div -->
 
-	<?php if (allow('projects/add')): ?>
-	<div class="box half construction project_add">
-		<?php
-		echo
-			$Form->att('class="styled flat"')->start('#'),
-			$Form->att('class="big" placeholder="'.l('TITLE').'"')->textbox('title'),
-			$Form->att('class="small resize_none" placeholder="'.l('DESCRIPTION').'" rows="4"')->textarea('description'),
-			$Form->wrapStart('buttons'),
-			cHTML::Link(l('CANCEL'), '#', 'class="cancel button plain"'),
-			$Form->wrap(false)->att('class="right"')->button(l('CREATE')),
-			$Form->wrapEnd(),
-			$Form->end();
-		?>
-	</div>
-	<?php endif; ?>
+	<?php if (allow('projects/add')) {
+		View::Get('projects/_create.php');
+	}?>
 
 </div> <!-- /#projects_dashboard -->
 

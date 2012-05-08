@@ -284,6 +284,17 @@ form.styled
 		margin-bottom: padding_main
 		&:last-child
 			margin-bottom: 0
+	fieldset
+		float: left
+		width: 100%
+		display: block
+		border: none
+		border-top: 1px solid c_input_background
+		border-bottom: 1px solid c_input_background
+		margin-bottom: padding_main
+		padding: padding_main 0
+		legend
+			padding-right: 5px
 	label
 		width: 100%
 		padding-bottom: 4px
@@ -411,8 +422,17 @@ a.button
 		float: left
 		width: 100%
 
-#projects_dashboard .box.half
-	float: left
-	margin-bottom: padding_main
-	&:nth-child(odd)
-		float: right
+#projects_dashboard 
+	.box.half
+		float: left
+		margin-bottom: padding_main
+		&:nth-child(even)
+			float: right
+	.project_add
+		div.field.tags
+			position: relative
+			a.tags.button
+				padding: 4px 7px 3px
+				position: absolute
+				right: 2px
+				top: 2px

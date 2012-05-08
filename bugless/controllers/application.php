@@ -44,6 +44,13 @@ class applicationController
 	}
 	//-
 
+
+	public function jsTagsCleanup($type)
+	{
+		uJSON::Response(tagsCleanup(Input::Post('tags'), $type));
+	}
+	//-
+
 	# default 404
 	public function not_found_404()
 	{

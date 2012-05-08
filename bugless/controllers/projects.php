@@ -11,7 +11,7 @@ class projectsController
 	public function dashboard()
 	{
 		if (!allow('projects/list', true)) { return false; }
-
+		cHTML::AddHeader('<script> var Bugless_TagsCleanupUrl = "'.url('tags-cleanup.json/projects').'";</script>', 'projectsAddTagsCheckUrl');
 		View::Get('projects/list');
 	}
 	//-
