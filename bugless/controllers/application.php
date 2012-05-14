@@ -25,8 +25,9 @@ class applicationController
 		# Add jQuery everywhere
 		cJquery::Add();
 
-		# Bugless javaScript
-		cHTML::AddFooter('<script src="'.url('/js/bugless.min.js').'"></script>', 'bugless.js');
+		# Bugless javaScript, if debug is enabled, then we don't use -min- version of javascript
+		$jsType = Cfg::Get('system/debug') ? '' : '.min';
+		cHTML::AddFooter('<script src="'.url("/js/bugless{$jsType}.js").'"></script>', 'bugless.js');
 	}
 	//-
 
@@ -44,7 +45,7 @@ class applicationController
 	}
 	//-
 
-
+	# Will cleanup posted tags
 	public function jsTagsCleanup($type)
 	{
 		uJSON::Response(tagsCleanup(Input::Post('tags'), $type));

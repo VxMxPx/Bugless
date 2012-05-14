@@ -61,6 +61,10 @@ $AvreliaConfig = array
 			# Parameter can be any length and contain (almost) any character.
 			# '/([a-z0-9_-]*)\/?([a-z0-9_-]*)\/?([a-zA-Z0-9\/!=\-+_.,;?]*)/' => '%1->%2(%3)',
 		),
+
+
+		# Turn debug off
+		'debug'            => false,
 	),
 
 	# Plugs settings.

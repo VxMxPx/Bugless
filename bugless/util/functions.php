@@ -139,13 +139,13 @@ function userInfo($key, $return=false)
  */
 function jsController($name)
 {
-	cHTML::AddFooter('<script>Bugless.run(\''.$name.'\');</script>', 'jsClass');
+	cHTML::AddFooter('<script>Bugless.run(\''.ucfirst(strtolower($name)).'\');</script>', 'jsClass');
 }
 //-
 
 /**
  * Take list of tags, and clean it, - check for tags which exits,
- * check for too long tags names and make them shorter, 
+ * check for too long tags names and make them shorter,
  * return list of valid tags with color code included.
  * --
  * @param	string	$tags	List of tags: tag,another,third
@@ -155,6 +155,29 @@ function jsController($name)
  */
 function tagsCleanup($tags, $type)
 {
-	return $type;
+	$tags = vString::ExplodeTrim(',', $tags);
+	$colors = Cfg::Get('bugless/colors');
+	shuffle($colors);
+	$pos    = 0; # Position in colors array
+	$max    = count($colors)-1; # Max position in color array
+	$result = array();
+
+	foreach ($tags as $tag) {
+
+		if (empty($tag)) continue;
+
+		if (strlen($tag) > 40) {
+			$tag = substr($tag,0,40);
+		}
+
+		$result[] = array(
+			'tag'   => $tag,
+			'color' => $colors[$pos]
+		);
+
+		$pos = $pos < $max ? $pos+1 : 0;
+	}
+
+	return $result;
 }
 //-

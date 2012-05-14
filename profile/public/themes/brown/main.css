@@ -19,7 +19,8 @@ small{font-size:12px;}
 small small{font-size:10px}
 button{cursor:pointer}
 h2{font-size:24px;margin-bottom:4px}
-body.js #messages .mItem{display:none;cursor:pointer}
+body.js #messages{display:none;}
+body.js #messages .mItem{cursor:pointer}
 #messages{position:absolute;z-index:10;top:20px;right:20px;color:#fff;}
 #messages .mItem{padding:10px;border-radius:4px;-moz-border-radius:4px;-o-border-radious:4px;-webkit-border-radius:4px;-ms-border-radius:4px;margin-bottom:4px;text-shadow:0 1px 0 rgba(0,0,0,0.2);-moz-text-shadow:0 1px 0 rgba(0,0,0,0.2);-o-text-shadow:0 1px 0 rgba(0,0,0,0.2);-webkit-text-shadow:0 1px 0 rgba(0,0,0,0.2);-ms-text-shadow:0 1px 0 rgba(0,0,0,0.2);}
 #messages .mItem#tERR{background-color:#c6004a}

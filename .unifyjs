@@ -1,6 +1,6 @@
 <?php
 
-# Replace //@include path/to/file.js with actual file content
+# Replace #@include path/to/file.js with actual file content
 function fixIncludes($match)
 {
 	global $basedir;
@@ -80,7 +80,7 @@ if (!$input || !$output) {
 # Fixes
 $input   = realpath($input);
 $basedir = dirname($input);
-$outputfix = substr($output, 0, -3) . '.min.js';
+$outputfix = substr($output, 0, -7) . '.min.js';
 
 if (!file_exists($input)) {
 	die("File not found: {$input}\n");
@@ -97,10 +97,11 @@ do {
 	if ($calcMod != $r) {
 		$calcMod = $r;
 		$contents = file_get_contents($input);
-		$contents = preg_replace_callback('/\/\/@include (.*?)\s/', 'fixIncludes', $contents);
+		$contents = preg_replace_callback('/#@include (.*?)\s/', 'fixIncludes', $contents);
 
 		if (file_put_contents($output, $contents)) {
-			exec("uglifyjs -o {$outputfix} {$output}");
+			exec('coffee --compile ./profile/public/js/');
+			exec('uglifyjs -o ./profile/public/js/bugless.min.js ./profile/public/js/bugless.js');
 			say('OK', "Saved: {$output}");
 		}
 		else {
