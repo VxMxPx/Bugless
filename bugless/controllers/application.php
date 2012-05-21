@@ -55,7 +55,8 @@ class applicationController
 	# default 404
 	public function not_found_404()
 	{
-		HTTP::Status404_NotFound('<h1>404: Not found</h1>');
+		HTTP::Status404_NotFound();
+		View::Get('_assets/404');
 	}
 	//-
 }

@@ -10,7 +10,7 @@
 			<div class="tags_list"></div>',
 			$Form
 				->ins(cHTML::Link('+', '#', 'class="tags button plain"'), true)
-				->att('class="tags" placeholder="'.l('ADD_NEW_TAG').'" autocomplete="off"')
+				->att('class="tags" placeholder="'.l('ADD_NEW_TAG_INPUT').'" autocomplete="off"')
 				->textbox('tags'),
 		'</fieldset>',
 		$Form->wrapStart('buttons'),

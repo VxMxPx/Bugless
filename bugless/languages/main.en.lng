@@ -30,6 +30,7 @@
 
 # Tagging
 !ADD_NEW_TAG: Add new tag
+!ADD_NEW_TAG_INPUT: Add new tag, seperate with comma
 !NO_TAGS_TO_SELECT_RIGHT_NOW: At the moment there's no tags.
 
 # Login
@@ -84,3 +85,8 @@ If none of mentioned work, then try to {1 register} a new account.
 !NOT_ALLOWED_MESSAGE: You don't have apropriate permissions to access this page.
 !NOT_ALLOWED_LOGIN:  Perhaps you need to {1 login}.
 !NOT_ALLOWED_LOGIN_OR_REGISTER: Perhaps you need to {1 login} or {2 register}.
+
+# 404
+!404_TITLE: Wooops, 404!
+!404_DESCRIPTION: It seems page you're looking for, doesn't exists (anymore)
+!404_ADVICE: Try to return back to the {1 dashboard}, perhaps?

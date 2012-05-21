@@ -93,3 +93,7 @@ a.button{padding:9px 16px 8px 16px}
 #projects_dashboard .box.half:nth-child(even){float:right}
 #projects_dashboard .project_add div.field.tags{position:relative;}
 #projects_dashboard .project_add div.field.tags a.tags.button{padding:4px 7px 3px;position:absolute;right:2px;top:2px}
+#error_404{padding-top:90px;background:url("404_bug.gif") no-repeat center 20px #fff;}
+#error_404 h2{margin-top:20px;border-top:1px solid #ccc;padding-top:20px}
+#error_404 h2,#error_404 small,#error_404 p{text-align:center;width:100%}
+#error_404 p{margin-top:20px}
