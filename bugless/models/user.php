@@ -26,6 +26,24 @@ class userModel
 	 */
 	public function __construct()
 	{
+		$this->reload(false);
+	}
+	//-
+
+	/**
+	 * Will reload this user's data
+	 * --
+	 * @param	boolean	$reloadSession	Should session information be reloaded too?
+	 * 									Useful after doing profile updates.
+	 * --
+	 * @return	void
+	 */
+	public function reload($reloadSession=true)
+	{
+		if ($reloadSession) {
+			cSession::Reload();
+		}
+
 		$this->loggedin = cSession::IsLoggedin();
 		$this->id       = cSession::AsArray('id');
 

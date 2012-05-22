@@ -54,11 +54,14 @@
 
   Select = (function() {
     var connect;
-    connect = function(first, second, values) {
+    connect = function(first, second, values, defaults) {
       return $(first).each(function() {
-        var $this, items, key, val;
+        var $this, items, key, selected, val;
         $this = $(this);
         items = '';
+        defaults = defaults || [false, false];
+        selected = '';
+        Log.add(defaults);
         $this.on('change keyup', function() {
           return $(second).each(function() {
             var key, val, _ref;
@@ -66,9 +69,11 @@
             _ref = values[$this.attr('value')];
             for (key in _ref) {
               val = _ref[key];
-              if (key) {
-                items += '<option value"' + key + '">' + values[$this.attr('value')][key] + '</option>';
+              if (!(key)) {
+                continue;
               }
+              selected = defaults[1] === key && defaults[0] === $this.attr('value') ? ' selected="selected"' : '';
+              items += '<option' + selected + ' value"' + key + '">' + values[$this.attr('value')][key] + '</option>';
             }
             if (items !== '') {
               $(this).html(items);
@@ -81,7 +86,8 @@
         });
         for (key in values) {
           val = values[key];
-          items += '<option values="' + key + '">' + key + '</option>';
+          selected = defaults[0] === key ? ' selected="selected"' : '';
+          items += '<option' + selected + ' values="' + key + '">' + key + '</option>';
         }
         return $this.html(items).trigger('keyup');
       });
@@ -130,7 +136,7 @@
 
   Bugless.register("Users", function() {
     if (typeof timezoneArray !== 'undefined') {
-      return Select.connect('select.tz_continent', 'select.tz_country', timezoneArray);
+      return Select.connect('select.tz_continent', 'select.tz_country', timezoneArray, defaultsItems);
     }
   });
 

@@ -10,7 +10,7 @@
 
 	<div class="right">
 		<?php if (loggedin()): ?>
-			<a href="<?php urle('profile'); ?>" class="link_outside"><small><?php le('HI_USER', userInfo('full_name')); ?></small></a>
+			<a href="<?php urle('profile'); ?>" class="link_outside"><small><?php le('HI_USER', userInfo('full_name|uname')); ?></small></a>
 			<a href="<?php urle('logout'); ?>" class="link_outside"><small><?php le('LOGOUT'); ?></small></a>
 		<?php else: ?>
 			<a href="<?php urle('login'); ?>" class="link_outside"><small><?php le('LOGIN'); ?></small></a>

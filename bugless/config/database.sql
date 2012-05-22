@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS 'users_sessions' (
 );
 
 -- STATEMENT: Additional User's Informations
+-- Dates (for created_on and updated_on are in following format: YmdHis)
 CREATE TABLE IF NOT EXISTS 'users_details' (
 	'user_id'		INTEGER			NOT NULL,
 	'created_on'	INTEGER			NOT NULL,
@@ -183,12 +184,15 @@ VALUES (0,0,'projects/list',1);
 -- STATEMENT: Dasboard access (adding of projects)
 INSERT INTO permissions ('user_id','project_id','action','allowed')
 VALUES (0,0,'projects/add',2);
+-- STATEMENT: Can edit own profile (only loggedin)?
+INSERT INTO permissions ('user_id','project_id','action','allowed')
+VALUES (0,0,'profile',1);
 -- STATEMENT: Default user (username: root@localhost, password: root)
 INSERT INTO users ('id','uname','password','active','activation_key')
 VALUES (1, 'root@localhost','ah1074cd38c1780ad3a070d294ee6bca306e.d615053f548848fbf68141a285521d04b754314f',1,0);
 -- STATEMENT: Users details
 INSERT INTO users_details ('user_id','created_on','updated_on','full_name','timezone','language')
-VALUES (1, 20120416, 20120416, 'Root User', 'UTM','en');
+VALUES (1, 20120416, 20120416, 'Root User', 'UTC','en');
 -- STATEMENT: Root user set as admin
 INSERT INTO permissions ('user_id','project_id','action','allowed')
 VALUES (1,0,'is_admin',1);

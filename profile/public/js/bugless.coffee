@@ -45,19 +45,25 @@ Messages = (->
 
 Select = (->
 	# Will connect two select together
-	# @param	string	first	Selector for first select (the one which is static)
-	# @param	string	second	Selector for second select (the one which is dynamic)
-	# @param	object	values	List of all values, need to have key == first.value
-	connect = (first, second, values)->
+	# @param	string	first		Selector for first select (the one which is static)
+	# @param	string	second		Selector for second select (the one which is dynamic)
+	# @param	object	values		List of all values, need to have key == first.value
+	# @param	array	defaults	default selected value for first and second select
+	connect = (first, second, values, defaults)->
 		$(first).each ->
 			$this = $(this)
 			items = ''
+			defaults = defaults || [false, false]
+			selected = ''
+
+			Log.add(defaults);
 
 			$this.on 'change keyup', ->
 				$(second).each ->
 					items = ''
 					for key, val of values[$this.attr 'value'] when key
-						items += '<option value"' + key + '">' + values[$this.attr 'value'][key] + '</option>' 
+						selected = if defaults[1] == key && defaults[0] == $this.attr 'value' then ' selected="selected"' else ''
+						items += '<option' + selected + ' value"' + key + '">' + values[$this.attr 'value'][key] + '</option>' 
 
 					if items != ''
 						$(this).html items
@@ -66,7 +72,9 @@ Select = (->
 						$(this).html ''
 						$(this).attr 'disabled', 'disabled'
 
-			items += '<option values="' + key + '">' + key + '</option>' for key, val of values
+			for key, val of values
+				selected = if defaults[0] == key then ' selected="selected"' else ''
+				items += '<option' + selected + ' values="' + key + '">' + key + '</option>' 
 
 			$this.html(items).trigger 'keyup'
 
@@ -108,6 +116,6 @@ Bugless.register "Projects", ->
 
 Bugless.register "Users", ->
 	if typeof timezoneArray != 'undefined'
-		Select.connect 'select.tz_continent', 'select.tz_country', timezoneArray
+		Select.connect 'select.tz_continent', 'select.tz_country', timezoneArray, defaultsItems
 # Export Bugless
 window.Bugless = Bugless

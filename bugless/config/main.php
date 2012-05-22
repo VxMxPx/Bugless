@@ -45,6 +45,9 @@ $AvreliaConfig = array
 			# Activate
 			'/activate\/([a-zA-Z0-9]*)\/([0-9]*)/i' => 'users->activate(%1, %2)',
 
+			# Profile
+			'/profile\/?(first)?/i'                 => 'users->profile(%1)',
+
 			# Forgot password
 			'/forgot_password/i'                    => 'users->forgot_password()',
 

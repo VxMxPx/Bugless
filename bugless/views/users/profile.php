@@ -2,11 +2,11 @@
 <?php View::Get('_assets/navigation_main'); ?>
 <div class="page">
 	<div class="box half center" id="activate_account">
-		<h2><?php le('ACCOUNT_ACTIVATE'); ?></h2>
-		<small class="faded"><?php le('ACCOUNT_ACTIVATE_TAGLINE'); ?></small>
+		<h2><?php le($first ? 'ACCOUNT_ACTIVATE' : 'EDIT_PROFILE'); ?></h2>
+		<small class="faded"><?php le($first ? 'ACCOUNT_ACTIVATE_TAGLINE' : 'EDIT_PROFILE_TAGLINE'); ?></small>
 		<?php
 		echo
-			$Form->att('class="m_top styled"')->start('register'),
+			$Form->att('class="m_top styled"')->defaults($Defaults)->start('profile'),
 			$Form->textbox('full_name',   l('FULL_NAME')),
 			$Form->wrapStart('timezone_wrap'),
 				$Form->wrap(false)->att('class="half tz_continent"')->select('continent', array(), l('TIMEZONE')),
@@ -14,7 +14,7 @@
 			$Form->wrapEnd(),
 			$Form->select('language', getLanguagesList(), l('LANGUAGE')),
 			'<div class="field cancel">',
-				cHTML::Link(l('DONT_WANNA'), url(), 'class="button plain"'),
+				cHTML::Link(l($first ? 'DONT_WANNA' : 'CANCEL'), url(), 'class="button plain"'),
 			'</div>',
 			$Form->button(l('SAVE')),
 			$Form->end();

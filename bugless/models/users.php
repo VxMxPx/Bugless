@@ -82,6 +82,37 @@ class usersModel
 	//-
 
 	/**
+	 * Will change settings for particular user
+	 * --
+	 * @param	array	$Data
+	 * @param	integer	$id
+	 * --
+	 * @return	boolean
+	 */
+	public function update($Data, $id)
+	{
+		vArray::Filter($Data, array(
+			'full_name' => 'string|',
+			'continent' => 'string|',
+			'country'   => 'string|',
+			'language'  => 'string|',
+		));
+
+		$Data['timezone'] = trim( $Data['continent'] . '/' . $Data['country'], '/');
+		unset($Data['continent'], $Data['country']);
+
+		# Cleanup
+		$Data['full_name']  = htmlentities( substr( strip_tags($Data['full_name']), 0, 100),  ENT_COMPAT | ENT_HTML401, 'UTF-8' );
+		$Data['timezone']   = vString::Clean($Data['timezone'], 255, 'aA1cs', '/_-');
+		$Data['language']   = vString::Clean($Data['language'], 4, 'a');
+		$Data['updated_on'] = gmdate('YmdHis');
+
+		# Update it
+		return cDatabase::Update($Data, 'users_details', array('user_id' => $id))->succeed();
+	}
+	//-
+
+	/**
 	 * Will activate user's account if possible
 	 * --
 	 * @param	string	$key

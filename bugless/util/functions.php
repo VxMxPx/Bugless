@@ -112,14 +112,30 @@ function allow($what, $message=false)
 /**
  * Get particular information about user
  * --
- * @param	string	$key
+ * @param	string	$key		Can be property or: property|another,
+ * 								in case first doesn't exists, second will be used.
  * @param	boolean	$return
  * --
  * @return	string
  */
 function userInfo($key, $return=false)
 {
-	$return = Model::Get('user')->{$key};
+	$User = Model::Get('user');
+	$return = null;
+
+	if (strpos($key, '|') !== false) {
+		$key = vString::ExplodeTrim('|', $key);
+	}
+	else {
+		$key = array($key);
+	}
+
+	foreach ($key as $item) {
+		$return = $User->{$item};
+		if ($return) {
+			break;
+		}
+	}
 
 	if ($return) {
 		return $return;

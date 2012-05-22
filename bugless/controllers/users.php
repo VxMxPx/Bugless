@@ -9,6 +9,58 @@ class usersController
 	//-
 
 	/**
+	 * Display or save user's profile!
+	 * --
+	 * @param	boolean	$first	Is it first time we're showing profile?
+	 * --
+	 * @return	void
+	 */
+	public function profile($first=false)
+	{
+		# Must be able to access profile of course
+		if (!allow('profile', true)) { return false; }
+
+		if (Input::HasPost()) {
+			if (Model::Get('users')->update(Input::Post(), userInfo('id'))) {
+				uMessage::Add('OK', l('YOUR_PROFILE_WAS_UPDATED'), __FILE__);
+				Model::Get('user')->reload();
+			}
+			else {
+				uMessage::Add('WAR', l('PROFILE_UPDATE_FAILED'), __FILE__);
+			}
+		}
+
+		if ($first) {
+			uMessage::Add('OK', l('ACCOUNT_ACTIVATE_MESSAGE'), __FILE__);
+		}
+
+		# Set timezone
+		$timezone = userInfo('timezone');
+		if ($timezone && strpos($timezone, '/') !== false) {
+			$timezone = explode('/', $timezone, 2);
+		}
+		else {
+			$timezone = array();
+			$timezone[0] = 'UTC';
+			$timezone[1] = false;
+		}
+
+		cHTML::AddHeader('<script>
+			var timezoneArray = '.uJSON::Encode(timezoneArray()).',
+				defaultsItems = '.uJSON::Encode($timezone).';
+		</script>', 'timezoneArray');
+
+		View::Get('users/profile', array(
+			'first'    => $first,
+			'Defaults' => array(
+				'full_name' => userInfo('full_name'),
+				'language' => userInfo('language'),
+			)
+		));
+	}
+	//-
+
+	/**
 	 * Will register the user
 	 * --
 	 * @return	void
@@ -33,7 +85,7 @@ class usersController
 				}
 			}
 		}
-		
+
 		View::Get('users/register');
 	}
 	//-
@@ -48,17 +100,12 @@ class usersController
 	 */
 	public function activate($key, $userId)
 	{
-		# If we can't login ...
+		# If login isn't allowed, then actiovation isn't either!
 		if (!allow('login', true)) { return false; }
 
 		if (Model::Get('users')->activate($key, (int)$userId))
 		{
-			uMessage::Add('OK', l('ACCOUNT_ACTIVATE_MESSAGE'), __FILE__);
-
-			cHTML::AddHeader('<script>
-				var timezoneArray = '.uJSON::Encode(timezoneArray()).'
-			</script>', 'timezoneArray');
-			View::Get('users/activate');
+			HTTP::Redirect(url('profile/first'));
 		}
 		else {
 			uMessage::Add('WAR', l('USER_ACCOUNT_ACTIVATE_INVALID_KEY'), __FILE__);

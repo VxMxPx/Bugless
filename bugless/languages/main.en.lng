@@ -72,6 +72,13 @@ None of the fields are required.
 If you want so, we can send you new activation key.
 !OK_SEND_IT: Ok, send it!
 
+# Profile
+!EDIT_PROFILE: Edit your profile
+!EDIT_PROFILE_TAGLINE: You can change your personal settings here
+!NOTHIN_TO_SAVE: Nothing to save
+!YOUR_PROFILE_WAS_UPDATED: Your profile was updated
+!PROFILE_UPDATE_FAILED: Failed to update your profile
+
 # Activate resend
 !ACCOUNT_RESEND_CHECK_MAIL: Check your e-mail
 !ACCOUNT_RESEND_MESSAGE: The message with new activation key was send to your e-mail.
