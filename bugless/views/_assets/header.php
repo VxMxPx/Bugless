@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bugless</title>
+	<title><?php echo Cfg::Get('bugless/project_name') ?></title>
 	<meta name="description" content="An Open Source Bug Tracker." />
 	<meta name="author" content="Marko Gajst" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php urle('/themes/brown/main.css'); ?>" />

@@ -14,6 +14,11 @@ class applicationController
 		# Get general settings from database
 		getDatabaseSettings();
 
+		# Do we have current user?
+		if (loggedin()) {
+			date_default_timezone_set(userInfo('timezone'));
+		}
+
 		# Load english language
 		Language::Load('main.en');
 
@@ -56,7 +61,8 @@ class applicationController
 	public function not_found_404()
 	{
 		HTTP::Status404_NotFound();
-		View::Get('_assets/404');
+		View::Get('_assets/master')->asMaster();
+		View::Get('application/404')->asRegion('main');
 	}
 	//-
 }

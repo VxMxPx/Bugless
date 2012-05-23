@@ -1,7 +1,7 @@
-<div class="sidebar" id="projects_list_sidebar">
-	<?php if (allow('projects/add')): ?>
+<div class="sidebar" id="dashboard_list_sidebar">
+	<?php if (allow('bug/submit')): ?>
 	<div class="group">
-		<a href="#" class="button huge color projects_add"><?php le('NEW_PROJECT'); ?></a>
+		<a href="<?php urle('bug/submit'); ?>" class="button huge color bug_submit"><?php le('SUBMIT_BUG'); ?></a>
 	</div>
 	<?php endif; ?>
 

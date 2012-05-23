@@ -48,19 +48,16 @@ class permissionsModel
 
 			# Check, is it admin
 			foreach ($Permissions as $Permission) {
-				if ($Permission['action'] === 'is_admin'
-					&& (int) $Permission['user_id'] === $id
-					&& (int) $Permission['project_id'] === 0)
+				if ($Permission['action'] === 'is_admin' && (int) $Permission['user_id'] === $id)
 				{
 					$isAdmin = (int) $Permission['allowed'] === 1;
 				}
 			}
 
-			foreach ($Permissions as $Permission) {
-
+			foreach ($Permissions as $Permission)
+			{
 				vArray::Filter($Permission, array(
 					'user_id'    => 'integer|',
-					'project_id' => 'integer|',
 					'action'     => 'string|',
 					'allowed'    => 'integer[-1,2]|0'
 				));
@@ -69,6 +66,15 @@ class permissionsModel
 					# User's specific permissions always override actual
 					if ($Permission['user_id'] === 0) {
 						continue;
+					}
+				}
+
+				# Fix for 1, if user not logged in
+				if ($Permission['allowed'] === 1) {
+					if ($Permission['user_id'] === 0) {
+						if (!cSession::IsLoggedin()) {
+							$Permission['allowed'] = 0;
+						}
 					}
 				}
 

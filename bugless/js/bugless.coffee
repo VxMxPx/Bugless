@@ -19,7 +19,6 @@ Bugless = (->
 #@include models/messages.coffee
 #@include models/select.coffee
 #@include models/tags.coffee
-#@include controllers/projects.coffee
 #@include controllers/users.coffee
 
 # Export Bugless

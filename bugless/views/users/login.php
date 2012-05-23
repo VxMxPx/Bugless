@@ -1,5 +1,3 @@
-<?php View::Get('_assets/header'); ?>
-<?php View::Get('_assets/navigation_main'); ?>
 <div class="page">
 	<div class="box half center" id="login">
 		<h2><?php le('LOGIN'); ?></h2>
@@ -19,4 +17,3 @@
 		?>
 	</div>
 </div>
-<?php View::Get('_assets/footer'); ?>

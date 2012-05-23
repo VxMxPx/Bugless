@@ -5,6 +5,10 @@
 !CANCEL: Cancel
 !SUBMIT: Submit
 !DASHBOARD: Dashboard
+!BUGS: Bugs
+!MILESTONES: Milestones
+!BLUEPRINTS: Blueprints
+!PAGES: Pages
 !STATUS: Status
 !ACTIVE: Active
 !FINISHED: Finished
@@ -23,10 +27,13 @@
 # Languages
 !ENGLISH: English
 
-# Projects
-!NEW_PROJECT: New Project
-!NO_PROJECTS_TO_DISPLAY: Oh no, there are {1 no projects} to display at the moment...
-!NO_PROJECTS_IDEA_TO_ADD: But hej! Here's an *idea*, why don't you {1 add a new project}?
+# Dashboard
+
+# Bugs
+!SUBMIT_BUG: Submit Bug
+!DASHBOARD_NOTHING_TO_DO: At the moment, there's {1 nothing to see} here. You can come back latter or...
+!DASHBOARD_NOTHING_TO_DO_CANT_SUBMIT: At the moment, there's {1 nothing to see} here. You can come back latter.
+!DASHBOARD_SUBMIT_BUG: ...you can {1 submit a new bug} now!
 
 # Tagging
 !ADD_NEW_TAG: Add new tag
@@ -64,6 +71,7 @@ Now, if you don't mind, we'd be very glad if you'd tell us a bit more about your
 None of the fields are required.
 !FULL_NAME: Your full name
 !TIMEZONE: Timezone
+!TIMEZONE_CURRENT: Timezone, current time {1}
 !LANGUAGE: Language
 !USER_ACCOUNT_ACTIVATE_INVALID_KEY: Invalid activation key.
 !USER_ACCOUNT_ACTIVATE_WAIT: Something ain't ok...
@@ -96,4 +104,4 @@ If none of mentioned work, then try to {1 register} a new account.
 # 404
 !404_TITLE: Wooops, 404!
 !404_DESCRIPTION: It seems page you're looking for, doesn't exists (anymore)
-!404_ADVICE: Try to return back to the {1 dashboard}, perhaps?
+!404_ADVICE: Try to return back to the {1 home page}, perhaps?

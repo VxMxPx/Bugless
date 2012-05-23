@@ -107,13 +107,6 @@ Tags = (container, url)->
 	$addButton.on 'click', ->
 		tagsRequest $input.val(), url
 
-Bugless.register "Projects", ->
-	newProject = ->
-		$('.no_projects').fadeOut 'fast'
-
-	tags = Tags('fieldset.tags_container', Bugless_TagsCleanupUrl)
-	$('.projects_add').on 'click', newProject
-
 Bugless.register "Users", ->
 	if typeof timezoneArray != 'undefined'
 		Select.connect 'select.tz_continent', 'select.tz_country', timezoneArray, defaultsItems

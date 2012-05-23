@@ -1,5 +1,3 @@
-<?php View::Get('_assets/header'); ?>
-
 <div class="page">
 	<div class="box half center" id="not_allowed">
 		<h2><?php le('NOT_ALLOWED_TITLE') ?></h2>
@@ -22,5 +20,3 @@
 		</p>
 	</div>
 </div>
-
-<?php View::Get('_assets/footer'); ?>

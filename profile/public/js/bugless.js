@@ -125,15 +125,6 @@
     });
   };
 
-  Bugless.register("Projects", function() {
-    var newProject, tags;
-    newProject = function() {
-      return $('.no_projects').fadeOut('fast');
-    };
-    tags = Tags('fieldset.tags_container', Bugless_TagsCleanupUrl);
-    return $('.projects_add').on('click', newProject);
-  });
-
   Bugless.register("Users", function() {
     if (typeof timezoneArray !== 'undefined') {
       return Select.connect('select.tz_continent', 'select.tz_country', timezoneArray, defaultsItems);

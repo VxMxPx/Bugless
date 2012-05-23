@@ -24,6 +24,7 @@ class usersController
 			if (Model::Get('users')->update(Input::Post(), userInfo('id'))) {
 				uMessage::Add('OK', l('YOUR_PROFILE_WAS_UPDATED'), __FILE__);
 				Model::Get('user')->reload();
+				date_default_timezone_set(userInfo('timezone'));
 			}
 			else {
 				uMessage::Add('WAR', l('PROFILE_UPDATE_FAILED'), __FILE__);
@@ -50,13 +51,14 @@ class usersController
 				defaultsItems = '.uJSON::Encode($timezone).';
 		</script>', 'timezoneArray');
 
+		View::Get('_assets/master')->asMaster();
 		View::Get('users/profile', array(
 			'first'    => $first,
 			'Defaults' => array(
 				'full_name' => userInfo('full_name'),
 				'language' => userInfo('language'),
 			)
-		));
+		))->asRegion('main');
 	}
 	//-
 
@@ -86,7 +88,8 @@ class usersController
 			}
 		}
 
-		View::Get('users/register');
+		View::Get('_assets/master')->asMaster();
+		View::Get('users/register')->asRegion('main');
 	}
 	//-
 
@@ -176,7 +179,8 @@ class usersController
 		}
 
 		# Get Login View
-		View::Get('users/login');
+		View::Get('_assets/master')->asMaster();
+		View::Get('users/login')->asRegion('main');
 	}
 	//-
 
@@ -206,7 +210,8 @@ class usersController
 		if (!allow('login', true)) { return false; }
 
 		# Get Forgot Password's Region
-		View::Get('users/forgot_password');
+		View::Get('_assets/master')->asMaster();
+		View::Get('users/forgot_password')->asRegion('main');
 	}
 	//-
 }

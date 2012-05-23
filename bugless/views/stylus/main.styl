@@ -127,6 +127,16 @@ small
 		font-size: 10px
 button
 	cursor: pointer
+
+h1
+	float: left
+	font-size: 24px
+	a
+		color: #fff
+		text-decoration: none
+		&:hover
+			background: transparent
+
 h2
 	font-size: 24px
 	margin-bottom: 4px
@@ -172,7 +182,7 @@ body.js #messages
 
 #bucket
 	width: width_full
-	margin: 10px auto 0
+	margin: 20px auto 0
 
 .sidebar
 	width: width_sidebar
@@ -381,11 +391,11 @@ a.button
 
 
 // Specific ==============================================
-#navigation_main
+#navigation_top
 	width: 100%
 	clear: both
 	float: left
-	margin-bottom: 30px
+	margin-bottom: padding_main
 	color: c_link_outside
 	.left a
 		margin-left: 10px
@@ -395,6 +405,20 @@ a.button
 		margin-right: 10px
 		&:last-child
 			margin-right: 0
+
+#navigation_main
+	width: width_has_sidebar
+	background-color: rgba(0,0,0,0.2)
+	box-shadow(inset 2px 2px 0px rgba(0,0,0,0.5))
+	border-radius(4px)
+	float: left
+	margin-bottom: padding_main
+	a
+		float: left
+		padding: 8px 10px
+		margin-right: 10px
+		&.active
+			color: #fff
 
 #login
 #forgot_password
@@ -423,20 +447,12 @@ a.button
 		float: left
 		width: 100%
 
-#projects_dashboard 
+#dashboard 
 	.box.half
 		float: left
 		margin-bottom: padding_main
 		&:nth-child(even)
 			float: right
-	.project_add
-		div.field.tags
-			position: relative
-			a.tags.button
-				padding: 4px 7px 3px
-				position: absolute
-				right: 2px
-				top: 2px
 
 #error_404
 	padding-top: 90px

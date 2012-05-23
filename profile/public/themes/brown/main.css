@@ -18,6 +18,9 @@ a:hover{background-color:#069;color:#fff;text-decoration:none;border-radius:2px;
 small{font-size:12px;}
 small small{font-size:10px}
 button{cursor:pointer}
+h1{float:left;font-size:24px;}
+h1 a{color:#fff;text-decoration:none;}
+h1 a:hover{background:transparent}
 h2{font-size:24px;margin-bottom:4px}
 body.js #messages{display:none;}
 body.js #messages .mItem{cursor:pointer}
@@ -32,7 +35,7 @@ body.js #messages .mItem{cursor:pointer}
 #messages .mMsg > div{padding-bottom:4px;}
 #messages .mMsg > div:last-child{padding-bottom:0}
 #master{width:100%;float:left;clear:both;background:url("header_bg.png") repeat-x left top}
-#bucket{width:960px;margin:10px auto 0}
+#bucket{width:960px;margin:20px auto 0}
 .sidebar{width:220px;float:right;color:#fff;}
 .sidebar h3{font-size:14px;font-weight:bold;margin-bottom:10px}
 .sidebar .open_select{list-style:none;float:left;clear:both;width:100%;}
@@ -79,20 +82,21 @@ button:hover,a.button:hover{background:url("button_bg.png") repeat-x left bottom
 button.plain,a.button.plain{background:#e7e7e7;border:none;font-weight:normal;box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-webkit-box-shadow:none;-ms-box-shadow:none;border-bottom:1px solid #e7e7e7;border-right:1px solid #e7e7e7}
 button:active,a.button:active{color:#000;border:none;border-top:1px solid #898989;border-left:1px solid #898989;background:url("input_bg.png") repeat-x left top #f5f5f5;outline:none}
 a.button{padding:9px 16px 8px 16px}
-#navigation_main{width:100%;clear:both;float:left;margin-bottom:30px;color:#8e7d74;}
-#navigation_main .left a{margin-left:10px;}
-#navigation_main .left a:first-child{margin-left:0}
-#navigation_main .right a{margin-right:10px;}
-#navigation_main .right a:last-child{margin-right:0}
+#navigation_top{width:100%;clear:both;float:left;margin-bottom:20px;color:#8e7d74;}
+#navigation_top .left a{margin-left:10px;}
+#navigation_top .left a:first-child{margin-left:0}
+#navigation_top .right a{margin-right:10px;}
+#navigation_top .right a:last-child{margin-right:0}
+#navigation_main{width:720px;background-color:rgba(0,0,0,0.2);box-shadow:inset 2px 2px 0 rgba(0,0,0,0.5);-moz-box-shadow:inset 2px 2px 0 rgba(0,0,0,0.5);-o-box-shadow:inset 2px 2px 0 rgba(0,0,0,0.5);-webkit-box-shadow:inset 2px 2px 0 rgba(0,0,0,0.5);-ms-box-shadow:inset 2px 2px 0 rgba(0,0,0,0.5);border-radius:4px;-moz-border-radius:4px;-o-border-radious:4px;-webkit-border-radius:4px;-ms-border-radius:4px;float:left;margin-bottom:20px;}
+#navigation_main a{float:left;padding:8px 10px;margin-right:10px;}
+#navigation_main a.active{color:#fff}
 #login .field.cancel,#forgot_password .field.cancel,#register .field.cancel,#activate_account .field.cancel,#login .field.forgot_password,#forgot_password .field.forgot_password,#register .field.forgot_password,#activate_account .field.forgot_password{margin-bottom:0;float:left;width:58%}
 #login .field.button,#forgot_password .field.button,#register .field.button,#activate_account .field.button{float:right;width:40%;}
 #login .field.button button,#forgot_password .field.button button,#register .field.button button,#activate_account .field.button button{float:right}
 #not_allowed p.message,#generic_message p.message{margin-top:20px;float:left;width:100%}
 #not_allowed p.buttons,#generic_message p.buttons{margin-top:20px;float:left;width:100%}
-#projects_dashboard .box.half{float:left;margin-bottom:20px;}
-#projects_dashboard .box.half:nth-child(even){float:right}
-#projects_dashboard .project_add div.field.tags{position:relative;}
-#projects_dashboard .project_add div.field.tags a.tags.button{padding:4px 7px 3px;position:absolute;right:2px;top:2px}
+#dashboard .box.half{float:left;margin-bottom:20px;}
+#dashboard .box.half:nth-child(even){float:right}
 #error_404{padding-top:90px;background:url("404_bug.gif") no-repeat center 20px #fff;}
 #error_404 h2{margin-top:20px;border-top:1px solid #ccc;padding-top:20px}
 #error_404 h2,#error_404 small,#error_404 p{text-align:center;width:100%}

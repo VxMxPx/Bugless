@@ -16,7 +16,7 @@ $AvreliaConfig = array
 			'before'    => 'application->before()',
 
 			# If there's no parameteres set in our URL, this will be called.
-			0           => 'projects->dashboard()',
+			0           => 'dashboard->index()',
 
 			# The 404 route.
 			# If not provided / not found, the system will look for 404.php view;

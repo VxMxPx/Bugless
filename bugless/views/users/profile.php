@@ -1,5 +1,3 @@
-<?php View::Get('_assets/header'); ?>
-<?php View::Get('_assets/navigation_main'); ?>
 <div class="page">
 	<div class="box half center" id="activate_account">
 		<h2><?php le($first ? 'ACCOUNT_ACTIVATE' : 'EDIT_PROFILE'); ?></h2>
@@ -9,7 +7,7 @@
 			$Form->att('class="m_top styled"')->defaults($Defaults)->start('profile'),
 			$Form->textbox('full_name',   l('FULL_NAME')),
 			$Form->wrapStart('timezone_wrap'),
-				$Form->wrap(false)->att('class="half tz_continent"')->select('continent', array(), l('TIMEZONE')),
+				$Form->wrap(false)->att('class="half tz_continent"')->select('continent', array(), l('TIMEZONE_CURRENT', date('H:i'))),
 				$Form->wrap(false)->att('class="half tz_country right"')->select('country', array()),
 			$Form->wrapEnd(),
 			$Form->select('language', getLanguagesList(), l('LANGUAGE')),
@@ -21,4 +19,3 @@
 		?>
 	</div>
 </div>
-<?php View::Get('_assets/footer'); ?>

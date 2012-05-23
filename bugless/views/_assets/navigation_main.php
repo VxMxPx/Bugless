@@ -1,22 +1,12 @@
 <div id="navigation_main">
 	<div class="left">
-		<?php if (allow('projects/list')) : ?>
-			<a href="<?php urle(); ?>" class="link_outside"><small><?php le('DASHBOARD'); ?></small></a>
-		<?php endif; ?>
-		<?php if (allow('is_admin')) : ?>
-			<a href="<?php urle('settings'); ?>" class="link_outside"><small><?php le('SETTINGS'); ?></small></a>
-		<?php endif; ?>
+		<a class="link_outside<?php if (!Input::Get(0)) echo ' active' ?>" href="<?php urle(); ?>"><?php le('DASHBOARD'); ?></a>
+		<a class="link_outside<?php if (Input::Get(0) === 'bug') echo ' active' ?>" href="<?php urle('bug/list'); ?>"><?php le('BUGS'); ?></a>
+		<a class="link_outside<?php if (Input::Get(0) === 'milestone') echo ' active' ?>" href="<?php urle('milestone/list'); ?>"><?php le('MILESTONES'); ?></a>
+		<a class="link_outside<?php if (Input::Get(0) === 'blueprint') echo ' active' ?>" href="<?php urle('blueprint/list'); ?>"><?php le('BLUEPRINTS'); ?></a>
+		<a class="link_outside<?php if (Input::Get(0) === 'page') echo ' active' ?>" href="<?php urle('page/list'); ?>"><?php le('PAGES'); ?></a>
 	</div>
 
 	<div class="right">
-		<?php if (loggedin()): ?>
-			<a href="<?php urle('profile'); ?>" class="link_outside"><small><?php le('HI_USER', userInfo('full_name|uname')); ?></small></a>
-			<a href="<?php urle('logout'); ?>" class="link_outside"><small><?php le('LOGOUT'); ?></small></a>
-		<?php else: ?>
-			<a href="<?php urle('login'); ?>" class="link_outside"><small><?php le('LOGIN'); ?></small></a>
-			<?php if (allow('register')) : ?>
-			<a href="<?php urle('register'); ?>" class="link_outside"><small><?php le('REGISTER_ACCOUNT'); ?></small></a>
-			<?php endif; ?>
-		<?php endif; ?>
 	</div>
 </div>

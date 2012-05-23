@@ -7,7 +7,7 @@
  */
 function getDatabaseSettings()
 {
-	$Settings = cDatabase::Find('settings', array('project_id' => 0));
+	$Settings = cDatabase::Find('settings');
 
 	if ($Settings->succeed()) {
 		$Settings = $Settings->asArray();
@@ -99,7 +99,8 @@ function allow($what, $message=false)
 {
 	if (!Model::Get('permissions')->canAccess($what)) {
 		if ($message) {
-			View::Get('application/not_allowed');
+			View::Get('_assets/master')->asMaster();
+			View::Get('application/not_allowed')->asRegion('main');
 		}
 		return false;
 	}
