@@ -23,6 +23,7 @@
 !TITLE: Title
 !DESCRIPTION: Description
 !CREATE: Create
+!FIND: Find
 
 # Languages
 !ENGLISH: English
@@ -81,11 +82,16 @@ If you want so, we can send you new activation key.
 !OK_SEND_IT: Ok, send it!
 
 # Profile
-!EDIT_PROFILE: Edit your profile
+!PERSONAL_INFORMATION: Personal information
 !EDIT_PROFILE_TAGLINE: You can change your personal settings here
 !NOTHIN_TO_SAVE: Nothing to save
 !YOUR_PROFILE_WAS_UPDATED: Your profile was updated
 !PROFILE_UPDATE_FAILED: Failed to update your profile
+!LOGIN_INFORMATION: Login information
+!LOGIN_INFORMATION_TAGLINE: Edit your login infomraion
+!SEGMENTS: Segments
+!GENERAL: General
+!LOGIN_SETTINGS: Login Settings
 
 # Activate resend
 !ACCOUNT_RESEND_CHECK_MAIL: Check your e-mail

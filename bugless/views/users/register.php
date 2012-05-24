@@ -1,3 +1,5 @@
+<?php View::Get('_assets/header'); ?>
+<?php View::Get('_assets/navigation_top'); ?>
 <div class="page">
 	<div class="box half center" id="register">
 		<h2><?php le('REGISTER_ACCOUNT'); ?></h2>
@@ -16,3 +18,4 @@
 		?>
 	</div>
 </div>
+<?php View::Get('_assets/footer'); ?>

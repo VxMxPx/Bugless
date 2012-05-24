@@ -1,5 +1,5 @@
 <?php View::Get('_assets/header'); ?>
-<?php View::Get('_assets/navigation_main'); ?>
+<?php View::Get('_assets/navigation_top'); ?>
 <div class="page">
 	<div class="box half center" id="generic_message">
 		<?php if (isset($title)): ?>

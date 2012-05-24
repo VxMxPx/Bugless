@@ -11,11 +11,11 @@ class usersController
 	/**
 	 * Display or save user's profile!
 	 * --
-	 * @param	boolean	$first	Is it first time we're showing profile?
+	 * @param	boolean	$page	The current page
 	 * --
 	 * @return	void
 	 */
-	public function profile($first=false)
+	public function profile($page=false)
 	{
 		# Must be able to access profile of course
 		if (!allow('profile', true)) { return false; }
@@ -31,7 +31,7 @@ class usersController
 			}
 		}
 
-		if ($first) {
+		if ($page === 'first') {
 			uMessage::Add('OK', l('ACCOUNT_ACTIVATE_MESSAGE'), __FILE__);
 		}
 
@@ -53,7 +53,7 @@ class usersController
 
 		View::Get('_assets/master')->asMaster();
 		View::Get('users/profile', array(
-			'first'    => $first,
+			'first'    => $page === 'first' ? true : false,
 			'Defaults' => array(
 				'full_name' => userInfo('full_name'),
 				'language' => userInfo('language'),
@@ -88,8 +88,7 @@ class usersController
 			}
 		}
 
-		View::Get('_assets/master')->asMaster();
-		View::Get('users/register')->asRegion('main');
+		View::Get('users/register');
 	}
 	//-
 
@@ -179,8 +178,7 @@ class usersController
 		}
 
 		# Get Login View
-		View::Get('_assets/master')->asMaster();
-		View::Get('users/login')->asRegion('main');
+		View::Get('users/login');
 	}
 	//-
 
@@ -210,8 +208,7 @@ class usersController
 		if (!allow('login', true)) { return false; }
 
 		# Get Forgot Password's Region
-		View::Get('_assets/master')->asMaster();
-		View::Get('users/forgot_password')->asRegion('main');
+		View::Get('users/forgot_password');
 	}
 	//-
 }

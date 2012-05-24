@@ -66,8 +66,8 @@ function timezoneArray()
 
 	foreach ($List as $value) {
 		$Value     = vString::ExplodeTrim('/', $value, 2);
-		$continent = $Value[0];
-		$country   = $Value[1];
+		$continent = isset($Value[0]) ? $Value[0] : null;
+		$country   = isset($Value[1]) ? $Value[1] : null;
 		$NewList[$continent][$country] = str_replace('_', ' ', $country);
 	}
 

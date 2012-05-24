@@ -182,7 +182,70 @@ body.js #messages
 
 #bucket
 	width: width_full
-	margin: 20px auto 0
+	margin: 10px auto
+	padding: 10px 0
+
+#navigation_top
+	width: 100%
+	clear: both
+	float: left
+	margin: 5px 0 20px
+	color: c_link_outside
+	.left a
+		margin-left: 10px
+		&:first-child
+			margin-left: 0
+	.right a
+		margin-right: 10px
+		&:last-child
+			margin-right: 0
+
+#page
+	width: width_full
+	margin-left: -20px
+	padding: 20px
+	float: left
+	background-color: rgba(255,240,210,0.04)
+	border-radius(4px)
+	box-shadow(inset 1px 1px 0 rgba(255,240,210,0.08)\, 0 0 4px rgba(0,0,0,0.4))
+
+#navigation_main 
+	.left
+		width: width_has_sidebar
+		background-color: rgba(0,0,0,0.2)
+		box-shadow(0 0 1px rgba(255,255,255,0.25)\, inset 1px 1px 2px rgba(0,0,0,0.2))
+		border-radius(4px)
+		float: left
+		margin-bottom: padding_main
+		a
+			float: left
+			padding: 8px 10px
+			margin-right: 10px
+			&.active
+				color: #fff
+				background-color: rgba(0,0,0,0.6)
+				//border-radius(4px)
+				&:first-child
+					border-radius(4px 0 0 4px)
+	.right
+		width: width_sidebar
+		position: relative
+		input
+			padding: 7px 7px 6px 7px
+			width: 100%
+			box-sizing()
+		button
+			position: absolute
+			right: 10px
+			top: 6px
+			background: url(search.png) no-repeat center transparent
+			width: 20px
+			height: 20px
+			border: none
+			box-shadow: none
+			padding: 0
+			span
+				display: none
 
 .sidebar
 	width: width_sidebar
@@ -346,6 +409,15 @@ form.styled
 			box-shadow(none)
 			background: c_input_background
 
+form.outside
+	input
+		background-color: rgba(0,0,0,0.2)
+		box-shadow(0 0 1px rgba(255,255,255,0.25)\, inset 1px 1px 2px rgba(0,0,0,0.2))
+		border-radius(4px)
+		border: none
+		padding: 7px
+		color: c_link_outside
+
 textarea
 	&.resize_none
 		resize: none
@@ -391,39 +463,11 @@ a.button
 
 
 // Specific ==============================================
-#navigation_top
-	width: 100%
-	clear: both
-	float: left
-	margin-bottom: padding_main
-	color: c_link_outside
-	.left a
-		margin-left: 10px
-		&:first-child
-			margin-left: 0
-	.right a
-		margin-right: 10px
-		&:last-child
-			margin-right: 0
-
-#navigation_main
-	width: width_has_sidebar
-	background-color: rgba(0,0,0,0.2)
-	box-shadow(inset 2px 2px 0px rgba(0,0,0,0.5))
-	border-radius(4px)
-	float: left
-	margin-bottom: padding_main
-	a
-		float: left
-		padding: 8px 10px
-		margin-right: 10px
-		&.active
-			color: #fff
-
 #login
 #forgot_password
 #register
-#activate_account
+#profile_personal
+#profile_login
 	.field
 		&.cancel
 		&.forgot_password
@@ -436,6 +480,9 @@ a.button
 			button
 				float: right
 
+#profile_login
+	margin-left: padding_main
+
 #not_allowed
 #generic_message
 	p.message
@@ -447,24 +494,28 @@ a.button
 		float: left
 		width: 100%
 
-#dashboard 
-	.box.half
-		float: left
-		margin-bottom: padding_main
-		&:nth-child(even)
-			float: right
-
 #error_404
-	padding-top: 90px
-	background: url(404_bug.gif) no-repeat center 20px  #fff
+#not_allowed
 	h2
-		margin-top: padding_main
-		border-top: 1px solid #ccc
-		padding-top: padding_main
+		border-bottom: 1px solid #ccc
+		padding-bottom: padding_main
+		margin-bottom: 0
 	h2
 	small
 	p
 		text-align: center
 		width: 100%
+		display: block
+
+#error_404
+	padding-top: 90px
+	background: url(404_bug.gif) no-repeat center 20px  #fff
+	h2
+		padding-bottom: 0
+		border-bottom: none
+		margin-bottom: 4px
+		margin-top: padding_main
+		border-top: 1px solid #ccc
+		padding-top: padding_main
 	p
 		margin-top: padding_main

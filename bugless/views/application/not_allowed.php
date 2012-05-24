@@ -1,5 +1,5 @@
 <div class="page">
-	<div class="box half center" id="not_allowed">
+	<div class="box full center" id="not_allowed">
 		<h2><?php le('NOT_ALLOWED_TITLE') ?></h2>
 		<!-- small class="faded"></small -->
 		<p class="message">
@@ -7,7 +7,7 @@
 		<?php
 			if (allow('login')) {
 
-				echo '<br /><br />';
+				echo '<br />';
 
 				if (allow('register')) {
 					le('NOT_ALLOWED_LOGIN_OR_REGISTER', lu('login', 'register'));
