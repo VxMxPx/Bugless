@@ -8,6 +8,9 @@ Server Configuration
 Only `profile/public` directory should be accessible through URL. If you'll change default folder's names or order,
 then update `bugless/config/define.php` file and/or `profile/public/index.php`.
 
+**Important!**
+In directory `profile` create folders `database` and `log` and make sure they're writable.
+
 Installation
 ------------
 After you downloaded project and configure project on your server, you need to run `http://your-domain/install`,
