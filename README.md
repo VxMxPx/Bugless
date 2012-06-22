@@ -32,5 +32,6 @@ To build them, run script `./.build` from Bugless root directory.
 You need to have node.js (npm) installed, and following components available:
 - stylus
 - uglify-js
+- coffee-script
 
 The mentioned script will keep runing and checking files for any changes, until you terminate it.
