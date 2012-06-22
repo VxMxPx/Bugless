@@ -14,11 +14,9 @@
  * @since      2011-04-01
  */
 
-
 # Define Avrelia (needed to prevent direct calls to files)
 define('AVRELIA', true);
 define('IN_CLI', false);
-
 
 # Turn Error Reporting ON for All ++ Set Error Displaying
 error_reporting(E_ALL);

@@ -114,6 +114,8 @@ a.link_outside
 	margin-bottom: padding_main
 .p_bottom
 	padding-bottom: padding_main
+.hide
+	display: none
 
 .construction
 	padding-bottom: 3px
@@ -141,10 +143,13 @@ h2
 	font-size: 24px
 	margin-bottom: 4px
 
-body.js #messages
-	display: none
-	.mItem
-		cursor: pointer
+body.js
+	#messages
+		display: none
+		.mItem
+			cursor: pointer
+	.js_hide
+		display: none
 
 #messages
 	position: absolute
@@ -293,7 +298,7 @@ body.js #messages
 			font-size: 20px
 			font-weight: bold
 			line-height: 1em
-			font-family: 'arial black'
+			font-family: 'arial black', Gadget, sans-serif
 			text-shadow(0 0 4px rgba(255,255,255,0.3)\, inset 1px 1px 1px 1px black)
 			border: none
 		&.color
@@ -358,6 +363,14 @@ form.styled
 		margin-bottom: padding_main
 		&:last-child
 			margin-bottom: 0
+		&.checkbox
+			label
+				width: auto
+				display: inline
+				cursor: pointer
+			input
+				vertical-align: bottom
+				cursor: pointer
 	fieldset
 		float: left
 		width: 100%
@@ -468,6 +481,7 @@ a.button
 #register
 #profile_personal
 #profile_login
+#profile_edit_login
 	.field
 		&.cancel
 		&.forgot_password

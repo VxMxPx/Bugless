@@ -63,6 +63,22 @@ class usersController
 	//-
 
 	/**
+	 * Display or save user's profile - login settings
+	 * --
+	 * @return void
+	 */
+	public function profile_login()
+	{
+		# Must be able to access profile
+		if (!allow('profile', true)) { return false; }
+
+		View::Get('_assets/master')->asMaster();
+		View::Get('users/profile_login', array(
+		))->asRegion('main');
+	}
+	//-
+
+	/**
 	 * Will register the user
 	 * --
 	 * @return	void

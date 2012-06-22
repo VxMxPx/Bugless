@@ -98,7 +98,7 @@ class usersModel
 			'language'  => 'string|',
 		));
 
-		$Data['timezone'] = trim( $Data['continent'] . '/' . $Data['country'], '/');
+		$Data['timezone'] = trim($Data['continent'] . '/' . $Data['country'], '/');
 		unset($Data['continent'], $Data['country']);
 
 		# Cleanup
@@ -131,7 +131,7 @@ class usersModel
 		}
 
 		if ($userId < 1) {
-			Log::Add("User's id must be valid postive number `{$userId}`.", 'WAR');
+			Log::Add("User's id must be valid positive number `{$userId}`.", 'WAR');
 			return false;
 		}
 
@@ -162,11 +162,11 @@ class usersModel
 	 */
 	public function activate_resend($userId)
 	{
-		# First check if we have apropriate user
+		# First check if we have appropriate user
 		$userId = (int) $userId;
 
 		if ($userId < 1) {
-			Log::Add("User's id must be valid postive number `{$userId}`.", 'WAR');
+			Log::Add("User's id must be valid positive number `{$userId}`.", 'WAR');
 			return false;
 		}
 

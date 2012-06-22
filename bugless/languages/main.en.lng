@@ -38,7 +38,7 @@
 
 # Tagging
 !ADD_NEW_TAG: Add new tag
-!ADD_NEW_TAG_INPUT: Add new tag, seperate with comma
+!ADD_NEW_TAG_INPUT: Add new tag, separate with comma
 !NO_TAGS_TO_SELECT_RIGHT_NOW: At the moment there's no tags.
 
 # Login
@@ -67,7 +67,7 @@
 # Activate
 !ACCOUNT_ACTIVATE: Thank you!
 !ACCOUNT_ACTIVATE_MESSAGE: Your account was successfully activated.
-!ACCOUNT_ACTIVATE_TAGLINE: <strong>Your account was activated, and you are logged-in automatically.</strong><br /><br />
+!ACCOUNT_ACTIVATE_TAGLINE: <strong>Your account was activated, and you are logged-in automatically.</strong>\n\n
 Now, if you don't mind, we'd be very glad if you'd tell us a bit more about yourself.
 None of the fields are required.
 !FULL_NAME: Your full name
@@ -77,7 +77,7 @@ None of the fields are required.
 !USER_ACCOUNT_ACTIVATE_INVALID_KEY: Invalid activation key.
 !USER_ACCOUNT_ACTIVATE_WAIT: Something ain't ok...
 !USER_ACCOUNT_ACTIVATE_WAIT_DESCRIPTION: The key isn't correct!
-!USER_ACCOUNT_ACTIVATE_WAIT_MESSAGE: It seems that something's wrong with your key.<br />
+!USER_ACCOUNT_ACTIVATE_WAIT_MESSAGE: It seems that somethings wrong with your key.\n
 If you want so, we can send you new activation key.
 !OK_SEND_IT: Ok, send it!
 
@@ -88,22 +88,27 @@ If you want so, we can send you new activation key.
 !YOUR_PROFILE_WAS_UPDATED: Your profile was updated
 !PROFILE_UPDATE_FAILED: Failed to update your profile
 !LOGIN_INFORMATION: Login information
-!LOGIN_INFORMATION_TAGLINE: Edit your login infomraion
+!LOGIN_INFORMATION_TAGLINE: Edit your login information
 !SEGMENTS: Segments
 !GENERAL: General
 !LOGIN_SETTINGS: Login Settings
+# Profile Login Edit
+!EDIT_LOGIN_SETTINGS_TAGLINE: You can change information related to your account here.\n
+{1 If you'll change your e-mail address you'll have to confirm it again.}
+!PASSWORD_CHANGE_TWICE: Please enter the password twice
+!PASSWORD_CHANGE_CB: I want to change my password
 
 # Activate resend
 !ACCOUNT_RESEND_CHECK_MAIL: Check your e-mail
 !ACCOUNT_RESEND_MESSAGE: The message with new activation key was send to your e-mail.
 !ACCOUNT_RESEND_FAILED: Oppps, this didn't work!
-!ACCOUNT_RESEND_FAILED_MESSAGE: Either account was already activated or doesn't exists at all.<br /><br />
+!ACCOUNT_RESEND_FAILED_MESSAGE: Either account was already activated or doesn't exists at all.\n\n
 What you can do next is try to {2 login} with your current account or {3 recover} your password.
 If none of mentioned work, then try to {1 register} a new account.
 
 # Not allowed
 !NOT_ALLOWED_TITLE: You can't access this!
-!NOT_ALLOWED_MESSAGE: You don't have apropriate permissions to access this page.
+!NOT_ALLOWED_MESSAGE: You don't have appropriate permissions to access this page.
 !NOT_ALLOWED_LOGIN:  Perhaps you need to {1 login}.
 !NOT_ALLOWED_LOGIN_OR_REGISTER: Perhaps you need to {1 login} or {2 register}.
 
