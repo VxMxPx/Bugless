@@ -202,14 +202,14 @@ class usersModel
 		$link = url("activate/{$key}/".$userId);
 
 		$mailContent = Cfg::Get('bugless/mail_registration');
-		$mailContent = str_replace(array('{{link}}', '{{site_title}}'), array($link, Cfg::Get('bugless/site_title')), $mailContent);
+		$mailContent = str_replace(array('{{link}}', '{{site_title}}'), array($link, Cfg::Get('bugless/project_name')), $mailContent);
 
 		$Mail = new cMail();
 
 		return $Mail
 				->from(Cfg::Get('bugless/mail_from'))
 				->to($userEmail)
-				->subject(l('EMAIL_CONFORMATION_SUBJECT', Cfg::Get('bugless/site_title')))
+				->subject(l('EMAIL_CONFORMATION_SUBJECT', Cfg::Get('bugless/project_name')))
 				->message(false, $mailContent)
 				->send();
 	}
