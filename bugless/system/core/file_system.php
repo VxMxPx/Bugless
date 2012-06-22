@@ -80,7 +80,7 @@ class FileSystem
 					$newPath = ds($path . '/' . $file);
 					$count = $count + self::Remove($newPath, false);
 				}
-
+				$count = $count + rmdir($path);
 				return $count;
 			}
 			else {
@@ -209,7 +209,9 @@ class FileSystem
 
 		# Delete It If Exists
 		if ($fileAppend === 0) {
-			if (file_exists($fileName)) unlink($fileName);
+			if (file_exists($fileName)) {
+				unlink($fileName);
+			}
 		}
 
 		# Create directrory if doesn't exists...
@@ -622,7 +624,7 @@ class FileSystem
 	 * --
 	 * @return	boolean
 	 */
-	public static function MakeDir($folderName, $recursive=true, $mode = 0755)
+	public static function MakeDir($folderName, $recursive=true, $mode=0755)
 	{
 		$folderName = ds($folderName);
 
