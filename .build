@@ -1,3 +1,0 @@
-#!/bin/bash
-php .unifyjs ./bugless/js/bugless.coffee ./profile/public/js/bugless.coffee &
-stylus -c -w ./bugless/views/stylus/main.styl -o ./profile/public/themes/brown/

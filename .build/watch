@@ -1,0 +1,25 @@
+#!/usr/bin/php
+<?php
+
+/**
+ * Will run new command (new process) and output the results
+ * --
+ * @param	string	$command
+ * --
+ * @return void
+ */
+function forkCommand($command)
+{
+	$pid = pcntl_fork();
+	if ($pid == -1) {
+		die('Failed to create new process. Reason: pcntl_fork.');
+	}
+	elseif ($pid) {
+		# We are the parent
+		system($command);
+		pcntl_wait($status); # Protect against Zombie children
+	}
+}
+
+forkCommand('php javascript.build.php ../bugless/sources/coffee/bugless.coffee ../profile/public/js/bugless.coffee');
+forkCommand('php stylus.build.php ../bugless/sources/stylus/brown.styl ../profile/public/themes/brown');

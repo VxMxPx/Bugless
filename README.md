@@ -28,7 +28,7 @@ After installation the default root user is created, to login use following info
 Build
 -----
 If you'll edit raw css or javaScript (in Bugless directory), you'll have to build those files. 
-To build them, run script `./.build` from Bugless root directory.
+To build them, run script `.build/watch` from Bugless root directory.
 You need to have node.js (npm) installed, and following components available:
 - stylus
 - uglify-js
