@@ -13,59 +13,46 @@ $AvreliaConfig = array
 			 *  **************************************  */
 
 			# We'll make everything ready here
-			'before'      => 'application->before()',
+			'<before>'    => 'application->before()',
 
 			# If there's no parameteres set in our URL, this will be called.
-			0             => 'dashboard->index()',
+			'<index>'     => 'dashboard->index()',
 
 			# The 404 route.
 			# If not provided / not found, the system will look for 404.php view;
 			# if that won't be found either, only 404 plain message will be shown.
-			404           => 'application->not_found_404()',
+			'<404>'       => 'application->not_found_404()',
 
 			# Trigger installation process
-			'/^install$/' => 'application->install()',
+			'install'     => 'application->install()',
 
 			/*  ****************************************************** *
 			 *          Users
 			 *  **************************************  */
 
 			# Login
-			'/^login$/i'                              => 'users->login()',
+			'login'                        => 'users->login()',
 
 			# Logout
-			'/^logout$/i'                             => 'users->logout()',
+			'logout'                       => 'users->logout()',
 
 			# Register
-			'/^register$/i'                           => 'users->register()',
+			'register'                     => 'users->register()',
 
 			# Resend activation mail
-			'/^activate\/resend\/([0-9]*)$/i'         => 'users->activate_resend(%1)',
+			'activate/resend/<09>'         => 'users->activate_resend(%3)',
 
 			# Activate
-			'/^activate\/([a-zA-Z0-9]*)\/([0-9]*)$/i' => 'users->activate(%1, %2)',
+			'activate/<aZ09>/<09>'         => 'users->activate(%2, %3)',
 
 			# Profile login settings
-			'/^profile\/edit_login$/i'                => 'users->profile_login()',
+			'profile/edit_login'           => 'users->profile_login()',
 
 			# Profile
-			'/^profile\/?([a-zA-Z_]*)?$/i'            => 'users->profile(%1)',
+			'profile/?<aZ_>'               => 'users->profile(%2)',
 
 			# Forgot password
-			'/^forgot_password$/i'                    => 'users->forgot_password()',
-
-			# Projects
-			'/^tags-cleanup.json\/(projects|bugs)$/i' => 'application->jsTagsCleanup(%1)',
-
-			# Match home/$method/$Parameters
-			# Controller and method can consist only of: a-z 0-9 _
-			# Parameter can be any length and contain (almost) any character.
-			# '/([a-z0-9_-]*)\/?([a-zA-Z0-9\/!=\-+_.,;?]*)/' => 'home->%1(%2)',
-
-			# Match $controller/$method/$Parametera
-			# Controller and method can consist only of: a-z 0-9 _
-			# Parameter can be any length and contain (almost) any character.
-			# '/([a-z0-9_-]*)\/?([a-z0-9_-]*)\/?([a-zA-Z0-9\/!=\-+_.,;?]*)/' => '%1->%2(%3)',
+			'forgot_password'              => 'users->forgot_password()',
 		),
 
 

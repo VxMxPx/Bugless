@@ -102,7 +102,7 @@ class usersModel
 		unset($Data['continent'], $Data['country']);
 
 		# Cleanup
-		$Data['full_name']  = htmlentities( substr( strip_tags($Data['full_name']), 0, 100),  ENT_COMPAT | ENT_HTML401, 'UTF-8' );
+		$Data['full_name']  = htmlentities( substr( strip_tags($Data['full_name']), 0, 100),  ENT_QUOTES, 'UTF-8' );
 		$Data['timezone']   = vString::Clean($Data['timezone'], 255, 'aA1cs', '/_-');
 		$Data['language']   = vString::Clean($Data['language'], 4, 'a');
 		$Data['updated_on'] = gmdate('YmdHis');
